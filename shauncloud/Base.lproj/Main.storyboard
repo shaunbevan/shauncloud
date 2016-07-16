@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -64,8 +65,44 @@
                     <view key="view" contentMode="scaleToFill" id="eNM-0N-LT9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1qL-px-kDl">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HoE-gv-4ng">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="hs7-6e-hG0" customClass="PlaylistCollectionViewCell" customModule="shauncloud" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="q3N-No-gA3" id="dwe-c8-LUb"/>
+                                    <outlet property="delegate" destination="q3N-No-gA3" id="4Uf-Oh-8wa"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="1qL-px-kDl" secondAttribute="trailing" constant="-20" id="5NB-2L-fVl"/>
+                            <constraint firstItem="JMW-Yy-L3T" firstAttribute="top" secondItem="1qL-px-kDl" secondAttribute="bottom" id="K04-8N-aRl"/>
+                            <constraint firstItem="1qL-px-kDl" firstAttribute="top" secondItem="keX-ir-8wH" secondAttribute="bottom" id="kjg-cy-uSa"/>
+                            <constraint firstItem="1qL-px-kDl" firstAttribute="leading" secondItem="eNM-0N-LT9" secondAttribute="leadingMargin" constant="-20" id="mMa-fK-oza"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="1qL-px-kDl" id="QpB-a5-Blm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nbg-mm-Rc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

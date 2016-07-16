@@ -17,6 +17,8 @@
 		476C02721D39821B003698E6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476C02711D39821B003698E6 /* WebViewController.swift */; };
 		476C02741D39CCAB003698E6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476C02731D39CCAB003698E6 /* User.swift */; };
 		476C02761D39DB2A003698E6 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476C02751D39DB2A003698E6 /* PlaylistViewController.swift */; };
+		47FC990B1D3A97800003667D /* PlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC990A1D3A97800003667D /* PlaylistCollectionViewCell.swift */; };
+		47FC990F1D3A9D940003667D /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC990E1D3A9D940003667D /* Networking.swift */; };
 		C65AA9593254B8C334859B61 /* Pods_shauncloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0324221ED93B69546ABEFD2B /* Pods_shauncloud.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +36,8 @@
 		476C02711D39821B003698E6 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		476C02731D39CCAB003698E6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		476C02751D39DB2A003698E6 /* PlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		47FC990A1D3A97800003667D /* PlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
+		47FC990E1D3A9D940003667D /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		7385047A7F536281C744E1F1 /* Pods-shauncloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shauncloud.debug.xcconfig"; path = "Pods/Target Support Files/Pods-shauncloud/Pods-shauncloud.debug.xcconfig"; sourceTree = "<group>"; };
 		747CB5C0465E9171F1EDB8F8 /* Pods-shauncloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shauncloud.release.xcconfig"; path = "Pods/Target Support Files/Pods-shauncloud/Pods-shauncloud.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +105,7 @@
 		470141A61D395643000E2EF4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				47FC990A1D3A97800003667D /* PlaylistCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -111,6 +116,7 @@
 				470141A21D395629000E2EF4 /* LoginViewController.swift */,
 				476C02711D39821B003698E6 /* WebViewController.swift */,
 				476C02751D39DB2A003698E6 /* PlaylistViewController.swift */,
+				47FC990E1D3A9D940003667D /* Networking.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -265,8 +271,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47FC990B1D3A97800003667D /* PlaylistCollectionViewCell.swift in Sources */,
 				470141A31D395629000E2EF4 /* LoginViewController.swift in Sources */,
 				470141961D395565000E2EF4 /* shauncloud.xcdatamodeld in Sources */,
+				47FC990F1D3A9D940003667D /* Networking.swift in Sources */,
 				476C02761D39DB2A003698E6 /* PlaylistViewController.swift in Sources */,
 				476C02741D39CCAB003698E6 /* User.swift in Sources */,
 				4701418E1D395565000E2EF4 /* AppDelegate.swift in Sources */,
