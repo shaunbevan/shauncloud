@@ -8,22 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		4701418E1D395565000E2EF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4701418D1D395565000E2EF4 /* AppDelegate.swift */; };
-		470141901D395565000E2EF4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4701418F1D395565000E2EF4 /* ViewController.swift */; };
 		470141931D395565000E2EF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 470141911D395565000E2EF4 /* Main.storyboard */; };
 		470141961D395565000E2EF4 /* shauncloud.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 470141941D395565000E2EF4 /* shauncloud.xcdatamodeld */; };
 		470141981D395565000E2EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 470141971D395565000E2EF4 /* Assets.xcassets */; };
 		4701419B1D395565000E2EF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 470141991D395565000E2EF4 /* LaunchScreen.storyboard */; };
+		470141A31D395629000E2EF4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470141A21D395629000E2EF4 /* LoginViewController.swift */; };
+		474AF7DA1D39629500E56795 /* Tracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474AF7D91D39629500E56795 /* Tracks.swift */; };
+		476C02721D39821B003698E6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476C02711D39821B003698E6 /* WebViewController.swift */; };
+		476C02741D39CCAB003698E6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476C02731D39CCAB003698E6 /* User.swift */; };
+		476C02761D39DB2A003698E6 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476C02751D39DB2A003698E6 /* PlaylistViewController.swift */; };
+		C65AA9593254B8C334859B61 /* Pods_shauncloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0324221ED93B69546ABEFD2B /* Pods_shauncloud.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0324221ED93B69546ABEFD2B /* Pods_shauncloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shauncloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4701418A1D395565000E2EF4 /* shauncloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shauncloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4701418D1D395565000E2EF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4701418F1D395565000E2EF4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		470141921D395565000E2EF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		470141951D395565000E2EF4 /* shauncloud.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shauncloud.xcdatamodel; sourceTree = "<group>"; };
 		470141971D395565000E2EF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4701419A1D395565000E2EF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4701419C1D395565000E2EF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		470141A21D395629000E2EF4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
+		474AF7D91D39629500E56795 /* Tracks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracks.swift; sourceTree = "<group>"; };
+		476C02711D39821B003698E6 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		476C02731D39CCAB003698E6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		476C02751D39DB2A003698E6 /* PlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		7385047A7F536281C744E1F1 /* Pods-shauncloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shauncloud.debug.xcconfig"; path = "Pods/Target Support Files/Pods-shauncloud/Pods-shauncloud.debug.xcconfig"; sourceTree = "<group>"; };
+		747CB5C0465E9171F1EDB8F8 /* Pods-shauncloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shauncloud.release.xcconfig"; path = "Pods/Target Support Files/Pods-shauncloud/Pods-shauncloud.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C65AA9593254B8C334859B61 /* Pods_shauncloud.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +55,8 @@
 			children = (
 				4701418C1D395565000E2EF4 /* shauncloud */,
 				4701418B1D395565000E2EF4 /* Products */,
+				5FC2EDA855E1D5C430BAA7BF /* Pods */,
+				F788C2B0EF4EC92BC9405FE6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +71,76 @@
 		4701418C1D395565000E2EF4 /* shauncloud */ = {
 			isa = PBXGroup;
 			children = (
-				4701418D1D395565000E2EF4 /* AppDelegate.swift */,
-				4701418F1D395565000E2EF4 /* ViewController.swift */,
+				470141A71D395646000E2EF4 /* Controllers */,
+				470141A61D395643000E2EF4 /* Views */,
+				470141A51D395641000E2EF4 /* Models */,
+				470141A41D39563E000E2EF4 /* Helpers */,
+				470141A81D39565D000E2EF4 /* Resources */,
 				470141911D395565000E2EF4 /* Main.storyboard */,
-				470141971D395565000E2EF4 /* Assets.xcassets */,
-				470141991D395565000E2EF4 /* LaunchScreen.storyboard */,
-				4701419C1D395565000E2EF4 /* Info.plist */,
 				470141941D395565000E2EF4 /* shauncloud.xcdatamodeld */,
 			);
 			path = shauncloud;
+			sourceTree = "<group>";
+		};
+		470141A41D39563E000E2EF4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		470141A51D395641000E2EF4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				474AF7D91D39629500E56795 /* Tracks.swift */,
+				476C02731D39CCAB003698E6 /* User.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		470141A61D395643000E2EF4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		470141A71D395646000E2EF4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				470141A21D395629000E2EF4 /* LoginViewController.swift */,
+				476C02711D39821B003698E6 /* WebViewController.swift */,
+				476C02751D39DB2A003698E6 /* PlaylistViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		470141A81D39565D000E2EF4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				470141971D395565000E2EF4 /* Assets.xcassets */,
+				4701418D1D395565000E2EF4 /* AppDelegate.swift */,
+				470141991D395565000E2EF4 /* LaunchScreen.storyboard */,
+				4701419C1D395565000E2EF4 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		5FC2EDA855E1D5C430BAA7BF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7385047A7F536281C744E1F1 /* Pods-shauncloud.debug.xcconfig */,
+				747CB5C0465E9171F1EDB8F8 /* Pods-shauncloud.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F788C2B0EF4EC92BC9405FE6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0324221ED93B69546ABEFD2B /* Pods_shauncloud.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +150,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4701419F1D395565000E2EF4 /* Build configuration list for PBXNativeTarget "shauncloud" */;
 			buildPhases = (
+				5A8E2268F92D9796DB7076C7 /* [CP] Check Pods Manifest.lock */,
 				470141861D395565000E2EF4 /* Sources */,
 				470141871D395565000E2EF4 /* Frameworks */,
 				470141881D395565000E2EF4 /* Resources */,
+				80F5A5148C365504C408EA09 /* [CP] Embed Pods Frameworks */,
+				5467A1E0595F0F39F7F5D3B0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -133,14 +212,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5467A1E0595F0F39F7F5D3B0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shauncloud/Pods-shauncloud-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A8E2268F92D9796DB7076C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		80F5A5148C365504C408EA09 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-shauncloud/Pods-shauncloud-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		470141861D395565000E2EF4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				470141A31D395629000E2EF4 /* LoginViewController.swift in Sources */,
 				470141961D395565000E2EF4 /* shauncloud.xcdatamodeld in Sources */,
-				470141901D395565000E2EF4 /* ViewController.swift in Sources */,
+				476C02761D39DB2A003698E6 /* PlaylistViewController.swift in Sources */,
+				476C02741D39CCAB003698E6 /* User.swift in Sources */,
 				4701418E1D395565000E2EF4 /* AppDelegate.swift in Sources */,
+				476C02721D39821B003698E6 /* WebViewController.swift in Sources */,
+				474AF7DA1D39629500E56795 /* Tracks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +384,7 @@
 		};
 		470141A01D395565000E2EF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7385047A7F536281C744E1F1 /* Pods-shauncloud.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = shauncloud/Info.plist;
@@ -264,6 +396,7 @@
 		};
 		470141A11D395565000E2EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 747CB5C0465E9171F1EDB8F8 /* Pods-shauncloud.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = shauncloud/Info.plist;
@@ -292,6 +425,7 @@
 				470141A11D395565000E2EF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
