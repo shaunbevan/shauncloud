@@ -56,6 +56,18 @@ struct Networking {
     
     // MARK: Requests
     
+    var username: String?
+    
+    mutating func gettingUser(){
+        self.getUser() { responseObject, error in
+            
+            print(responseObject!["username"])
+            self.username = responseObject!["username"].string
+            return
+        }
+
+    }
+    
     func getUser(completionHandler: (JSON?, NSError?) -> ()) {
         requestUser(completionHandler)
     }
@@ -87,7 +99,7 @@ struct Networking {
     
     func requestPlaylist(completionHandler: (JSON?, NSError?) ->()) {
         let token = keychain[keychainKey]
-        
+        print("Requesting Playlist")
         if let token = token {
             let playlistEndpoint: String = "https://api.soundcloud.com/me/playlists?oauth_token=\(token)"
             Alamofire.request(.GET, playlistEndpoint) .responseJSON { response in

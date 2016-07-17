@@ -14,11 +14,41 @@ import SwiftyJSON
 class LoginViewController: UIViewController {
     
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var playlistButton: UIButton!
     var networking = Networking()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        playlistButton.hidden = true
+        
+        // Initial load of user data
+        networking.getUser() { responseObject, error in
+            if let json = responseObject {
+                User.currentUser.username = json["username"].string
+                User.currentUser.playlistCount = json["playlist_count"].intValue
+            }
+        }
+
+        // Initial load of playlist data
+        networking.getPlaylist() { responseObject, error in
+            if let json = responseObject {
+                self.spinner.stopAnimating()
+                self.playlistButton.hidden = false
+                for index in 0..<json.count {
+
+                    let artURL = json[index]["artwork_url"].stringValue
+                    let title = json[index]["title"].stringValue
+                    Playlists.userPlaylists.playlistArtURL.append(artURL)
+                    Playlists.userPlaylists.playlistTitles.append(title)
+                }
+            }
+            else {
+                self.spinner.startAnimating()
+            }
+        }
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -28,9 +58,6 @@ class LoginViewController: UIViewController {
     
     @IBAction func signInPressed(sender: AnyObject) {
         //networking.requestAuthenication()
-        if let username = self.id {
-            print(username)
-        }
         
     }
     var user: [String]?
@@ -38,13 +65,6 @@ class LoginViewController: UIViewController {
     var id: String?
     
     @IBAction func getInfoPressed(sender: AnyObject) {
-        
-//        networking.getUser() { responseObject, error in
-//            
-//            print(responseObject!["username"])
-//            self.id = responseObject!["username"].string
-//            return
-//        }
         self.performSegueWithIdentifier("showPlaylist", sender: self)
     }
     
