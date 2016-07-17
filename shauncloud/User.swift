@@ -7,24 +7,35 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
 
 class User {
+    let username: String
+    let fullName: String
+    let description: String
+    let playlistCount: String
+    let trackCount: String
     
-    var id: String?
-    var username: String?
-    var fullName: String?
-    var description: String?
-    var trackCount: String?
-    var playlistCount: String?
-    
-    required init(json: JSON){
-        self.id = json["id"].string
-        self.username = json["username"].string
-        self.fullName = json["full_name"].string
-        self.description = json["description"].string
-        self.trackCount = json["track_count"].string
-        self.playlistCount = json["playlist_count"].string
+    init(username: String, fullName: String, description: String, playlistCount: String, trackCount: String){
+        self.username = username
+        self.fullName = fullName
+        self.description = description
+        self.playlistCount = playlistCount
+        self.trackCount = trackCount
     }
+    
+    class func getUser(json:JSON) -> User? {
+        if let
+            username = json["username"].string,
+            fullName = json["full_name"].string,
+            description = json["description"].string,
+            playlistCount = json["playlist_count"].string,
+            trackCount = json["track_count"].string {
+            return User(username: username, fullName: fullName, description: description, playlistCount: playlistCount, trackCount: trackCount)
+        } else {
+            print("Bad JSON \(json)")
+            return nil
+        }
+    }
+
 }

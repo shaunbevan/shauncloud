@@ -96,6 +96,7 @@
 		470141A51D395641000E2EF4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				47FC990E1D3A9D940003667D /* Networking.swift */,
 				474AF7D91D39629500E56795 /* Tracks.swift */,
 				476C02731D39CCAB003698E6 /* User.swift */,
 			);
@@ -116,7 +117,6 @@
 				470141A21D395629000E2EF4 /* LoginViewController.swift */,
 				476C02711D39821B003698E6 /* WebViewController.swift */,
 				476C02751D39DB2A003698E6 /* PlaylistViewController.swift */,
-				47FC990E1D3A9D940003667D /* Networking.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

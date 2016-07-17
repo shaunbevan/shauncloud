@@ -14,7 +14,7 @@ import SwiftyJSON
 class LoginViewController: UIViewController {
     
     
-    let networking = Networking()
+    var networking = Networking()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +27,25 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func signInPressed(sender: AnyObject) {
-        networking.requestAuthenication()
+        //networking.requestAuthenication()
+        if let username = self.id {
+            print(username)
+        }
         
     }
+    var user: [String]?
+    
+    var id: String?
     
     @IBAction func getInfoPressed(sender: AnyObject) {
-        networking.requestUserInfo()
+        
+//        networking.getUser() { responseObject, error in
+//            
+//            print(responseObject!["username"])
+//            self.id = responseObject!["username"].string
+//            return
+//        }
+        self.performSegueWithIdentifier("showPlaylist", sender: self)
     }
     
     
