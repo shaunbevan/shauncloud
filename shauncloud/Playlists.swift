@@ -16,5 +16,6 @@ class Playlists {
     var playlistTitles = [String]()
     var playlistImages: [UIImage]?
     var playlistArtURL = [String]()
+    var playlistTracks = [Int]()
     
 }

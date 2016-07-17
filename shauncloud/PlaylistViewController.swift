@@ -145,9 +145,22 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("showTracks", sender: self)
+        
+        self.performSegueWithIdentifier("showTracks", sender: indexPath)
+        
     }
     
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if let row = sender?.row {
+            let vc = segue.destinationViewController as! TracksViewController
+            vc.playlistTitle.title = Playlists.userPlaylists.playlistTitles[row]
+            vc.numberOfTracks = Playlists.userPlaylists.playlistTracks[row]
+        }
+
+    }
+ 
 
     
     

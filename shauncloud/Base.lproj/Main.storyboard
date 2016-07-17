@@ -143,14 +143,14 @@
                     <navigationItem key="navigationItem" title="Playlists" id="2VB-E1-nfe"/>
                     <connections>
                         <outlet property="collectionView" destination="1qL-px-kDl" id="QpB-a5-Blm"/>
-                        <segue destination="LUr-un-Hq8" kind="show" id="gag-SG-ubj"/>
+                        <segue destination="LUr-un-Hq8" kind="show" identifier="showTracks" id="XhS-AO-nMW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nbg-mm-Rc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1840" y="470"/>
         </scene>
-        <!--Tracks View Controller-->
+        <!--Title-->
         <scene sceneID="KX9-5N-b9Y">
             <objects>
                 <viewController id="LUr-un-Hq8" customClass="TracksViewController" customModule="shauncloud" customModuleProvider="target" sceneMemberID="viewController">
@@ -190,13 +190,15 @@
                             <constraint firstItem="kKW-v2-oYn" firstAttribute="top" secondItem="mSB-Ig-OvJ" secondAttribute="bottom" id="b9g-fH-qYS"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="Dbm-aw-GMt"/>
                     <connections>
+                        <outlet property="playlistTitle" destination="Dbm-aw-GMt" id="gMe-QQ-AFY"/>
                         <outlet property="tableView" destination="kKW-v2-oYn" id="vee-cw-lXf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ttH-yW-NzP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2483" y="470"/>
+            <point key="canvasLocation" x="2714" y="476"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="euE-Dx-3ls">

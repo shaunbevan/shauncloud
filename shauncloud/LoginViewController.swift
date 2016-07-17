@@ -39,8 +39,11 @@ class LoginViewController: UIViewController {
 
                     let artURL = json[index]["artwork_url"].stringValue
                     let title = json[index]["title"].stringValue
+                    let tracks = json[index]["tracks"].count
+
                     Playlists.userPlaylists.playlistArtURL.append(artURL)
                     Playlists.userPlaylists.playlistTitles.append(title)
+                    Playlists.userPlaylists.playlistTracks.append(tracks)
                 }
             }
             else {
@@ -60,9 +63,6 @@ class LoginViewController: UIViewController {
         //networking.requestAuthenication()
         
     }
-    var user: [String]?
-    
-    var id: String?
     
     @IBAction func getInfoPressed(sender: AnyObject) {
         self.performSegueWithIdentifier("showPlaylist", sender: self)

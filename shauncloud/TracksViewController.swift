@@ -13,20 +13,26 @@ class TracksViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let networking = Networking()
     
     let cellIdentifier = "Cell"
-    var trackCount: Int?
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var numberOfTracks: Int = 0
+    
+    @IBOutlet weak var playlistTitle: UINavigationItem!
+    
+    var playlistTitleName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        print("Number of tracks: \(numberOfTracks)")
+        return numberOfTracks
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

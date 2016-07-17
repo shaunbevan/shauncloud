@@ -56,17 +56,7 @@ struct Networking {
     
     // MARK: Requests
     
-    var username: String?
-    
-    mutating func gettingUser(){
-        self.getUser() { responseObject, error in
-            
-            print(responseObject!["username"])
-            self.username = responseObject!["username"].string
-            return
-        }
-
-    }
+    // User
     
     func getUser(completionHandler: (JSON?, NSError?) -> ()) {
         requestUser(completionHandler)
@@ -75,6 +65,7 @@ struct Networking {
     func requestUser(completionHandler: (JSON?, NSError?) -> ()) {
         
         let token = keychain[keychainKey]
+        print(token)
         
         if let token = token {
             let userEndpoint: String = "https://api.soundcloud.com/me?oauth_token=\(token)"
@@ -91,7 +82,8 @@ struct Networking {
         
 
     }
-
+    
+    // Playlist
     
     func getPlaylist(completionHandler: (JSON?, NSError?) -> ()) {
         requestPlaylist(completionHandler)
