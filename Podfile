@@ -10,5 +10,5 @@ target 'shauncloud' do
   pod 'Alamofire', '~> 3.4'
   pod 'SwiftyJSON', '~> 2.3'
   pod 'OAuthSwift', '~> 0.5'
- 
+  pod 'KeychainAccess', '~> 2.3'
 end

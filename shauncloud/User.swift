@@ -7,24 +7,16 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
 
 class User {
     
-    var id: String?
+    static let currentUser = User()
+    
     var username: String?
     var fullName: String?
     var description: String?
-    var trackCount: String?
-    var playlistCount: String?
+    var playlistCount: Int?
+    var trackCount: Int?
     
-    required init(json: JSON){
-        self.id = json["id"].string
-        self.username = json["username"].string
-        self.fullName = json["full_name"].string
-        self.description = json["description"].string
-        self.trackCount = json["track_count"].string
-        self.playlistCount = json["playlist_count"].string
-    }
 }
