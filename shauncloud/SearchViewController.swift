@@ -22,12 +22,21 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var networking = Networking()
     
     let spinner: UIActivityIndicatorView = UIActivityIndicatorView  (activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
-
-
+    var notFoundLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.hidden = true
+    
+        self.notFoundLabel = UILabel(frame: CGRectMake(0, 0, self.view.frame.width, 100))
+        
+        self.notFoundLabel.center = self.view.center
+        self.notFoundLabel.textColor = UIColor.lightGrayColor()
+        self.view.addSubview(notFoundLabel)
+        self.notFoundLabel.text = "Track not found"
+        self.notFoundLabel.textAlignment = .Center
+        self.notFoundLabel.bringSubviewToFront(self.view)
+        self.notFoundLabel.hidden = true
         
         spinner.color = UIColor.lightGrayColor()
         spinner.frame = CGRectMake(0.0, 0.0, 10.0, 10.0)
@@ -139,30 +148,35 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         self.resultSearchController.searchBar.resignFirstResponder()
         
-//        let searchText = self.resultSearchController.searchBar.text
-//        
-//        if let query = searchText {
-//            print(query)
-//        }
-//        
-        spinner.startAnimating()
-        networking.searchTracks() { responseObject, error in
-            if let json = responseObject {
-                self.spinner.stopAnimating()
-                self.spinner.hidesWhenStopped = true
-                
-                for index in 0..<json.count {
-                    let title = json[index]["title"].stringValue
-                    let imageResult = json[index]["artwork_url"].stringValue
-                    let id = json[index]["id"].stringValue
-                    self.filteredArray.append(title)
-                    self.filteredArrayImages.append(imageResult)
-                    self.trackID.append(id)
+        let searchText = self.resultSearchController.searchBar.text
+        
+        if let query = searchText {
+            print(query)
+            spinner.startAnimating()
+            
+            networking.searchTracks(query) { responseObject, error in
+                if let json = responseObject {
+                    self.spinner.stopAnimating()
+                    self.spinner.hidesWhenStopped = true
+                    
+                    if json.isEmpty {
+                        self.notFoundLabel.hidden = false
+                    }
+                    
+                    for index in 0..<json.count {
+                        let title = json[index]["title"].stringValue
+                        let imageResult = json[index]["artwork_url"].stringValue
+                        let id = json[index]["id"].stringValue
+                        self.filteredArray.append(title)
+                        self.filteredArrayImages.append(imageResult)
+                        self.trackID.append(id)
+                    }
+                    self.tableView.reloadData()
+                    
                 }
-                self.tableView.reloadData()
-                
-            }
-        }
+            }        }
+        
+  
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
@@ -170,6 +184,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
+        self.notFoundLabel.hidden = true
         self.filteredArray.removeAll(keepCapacity: false)
         
         let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)

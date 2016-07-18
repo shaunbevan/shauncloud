@@ -123,16 +123,18 @@ struct Networking {
         }
     }
     
-    func searchTracks(completionHandler: (JSON?, NSError?) -> ()) {
-        requestSearch(completionHandler)
+    func searchTracks(params: String, completionHandler: (JSON?, NSError?) -> ()) {
+        requestSearch(params, completionHandler: completionHandler)
     }
     
-    func requestSearch(completionHandler: (JSON?, NSError?) -> ()) {
+    func requestSearch(params: String, completionHandler: (JSON?, NSError?) -> ()) {
         let token = keychain[keychainKey]
+        
+        let searchQuery = params.removeWhitespace()
         
         if let token = token {
             // Static string, need to change
-            let query: String = "https://api.soundcloud.com/me/tracks?oauth_token=\(token)&q=dogs"
+            let query: String = "https://api.soundcloud.com/me/tracks?oauth_token=\(token)&q=\(searchQuery)"
             Alamofire.request(.GET, query) .responseJSON { response in
                 switch response.result {
                 case .Success(let value):
@@ -171,4 +173,14 @@ struct Networking {
 //        }
 //        
 //    }
+}
+
+extension String {
+    func replace(string:String, replacement:String) -> String {
+        return self.stringByReplacingOccurrencesOfString(string, withString: replacement, options: NSStringCompareOptions.LiteralSearch, range: nil)
+    }
+    
+    func removeWhitespace() -> String {
+        return self.replace(" ", replacement: "%20")
+    }
 }
