@@ -104,6 +104,49 @@ struct Networking {
         }
     }
     
+    func deleteTrack(completionHandler: (JSON?, NSError?) -> ()) {
+        let token = keychain[keychainKey]
+        
+        if let token = token {
+            let trackid = "230726323"
+            // https://api.soundcloud.com/me/tracks/230726323?oauth_token=1-254567-4438611-33d45464b0610c4
+            let track: String = "https://api.soundcloud.com/me/tracks/\(trackid)?oauth_token=\(token)"
+            Alamofire.request(.DELETE, track) .responseJSON { response in
+                switch response.result {
+                case .Success(let value):
+                    completionHandler(JSON(value), nil)
+                case .Failure(let error):
+                    completionHandler(nil, error)
+            
+                }
+            }
+        }
+    }
+    
+    func searchTracks(params: String, completionHandler: (JSON?, NSError?) -> ()) {
+        requestSearch(params, completionHandler: completionHandler)
+    }
+    
+    func requestSearch(params: String, completionHandler: (JSON?, NSError?) -> ()) {
+        let token = keychain[keychainKey]
+        
+        let searchQuery = params.removeWhitespace()
+        
+        if let token = token {
+            // Static string, need to change
+            let query: String = "https://api.soundcloud.com/me/tracks?oauth_token=\(token)&q=\(searchQuery)"
+            Alamofire.request(.GET, query) .responseJSON { response in
+                switch response.result {
+                case .Success(let value):
+                    completionHandler(JSON(value), nil)
+                case .Failure(let error):
+                    completionHandler(nil, error)
+                }
+            }
+        
+        }
+    }
+    
 //    func requestUserPlaylist(){
 //        let token = keychain[keychainKey]
 //        print(token)
@@ -130,4 +173,14 @@ struct Networking {
 //        }
 //        
 //    }
+}
+
+extension String {
+    func replace(string:String, replacement:String) -> String {
+        return self.stringByReplacingOccurrencesOfString(string, withString: replacement, options: NSStringCompareOptions.LiteralSearch, range: nil)
+    }
+    
+    func removeWhitespace() -> String {
+        return self.replace(" ", replacement: "%20")
+    }
 }

@@ -35,8 +35,6 @@ class TracksViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     let track = json[playlistIndex!]["tracks", index]["title"].stringValue
                     self.tracks.append(track)
                 }
-                print(json[4])
-
 
                 self.playlistArtURL = json[playlistIndex!]["artwork_url"].stringValue
                 self.tableView.reloadData()
