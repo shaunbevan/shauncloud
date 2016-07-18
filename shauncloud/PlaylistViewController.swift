@@ -19,8 +19,17 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     private var cellIdentifier: String = "Cell"
     
+    let spinner: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.spinner.color = UIColor.blueColor()
+        self.spinner.frame = CGRectMake(0.0, 0.0, 10.0, 10.0)
+        self.spinner.center = self.view.center
+        self.view.addSubview(spinner)
+        self.spinner.bringSubviewToFront(self.view)
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -31,9 +40,14 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.updatePlaylist()
+    }
+    
+    func updatePlaylist(){
+        self.spinner.startAnimating()
         networking.getPlaylist() { responseObject, error in
-
             
+            self.spinner.stopAnimating()
             var newPlaylist = [String]()
             var newArtURL = [String]()
             
@@ -61,7 +75,6 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
             }
         }
     }
-    
 
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
