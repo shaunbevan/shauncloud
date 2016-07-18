@@ -16,7 +16,7 @@
 		472766BF1D3BE0D100FBE48B /* TracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472766BE1D3BE0D100FBE48B /* TracksViewController.swift */; };
 		472766C11D3BE0EF00FBE48B /* TracksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472766C01D3BE0EF00FBE48B /* TracksTableViewCell.swift */; };
 		472766C31D3BFCDC00FBE48B /* Playlists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472766C21D3BFCDC00FBE48B /* Playlists.swift */; };
-		474AF7DA1D39629500E56795 /* Tracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474AF7D91D39629500E56795 /* Tracks.swift */; };
+		472766C51D3C8DDE00FBE48B /* TrackDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472766C41D3C8DDE00FBE48B /* TrackDetailViewController.swift */; };
 		476C02721D39821B003698E6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476C02711D39821B003698E6 /* WebViewController.swift */; };
 		476C02741D39CCAB003698E6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476C02731D39CCAB003698E6 /* User.swift */; };
 		476C02761D39DB2A003698E6 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476C02751D39DB2A003698E6 /* PlaylistViewController.swift */; };
@@ -38,7 +38,7 @@
 		472766BE1D3BE0D100FBE48B /* TracksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksViewController.swift; sourceTree = "<group>"; };
 		472766C01D3BE0EF00FBE48B /* TracksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksTableViewCell.swift; sourceTree = "<group>"; };
 		472766C21D3BFCDC00FBE48B /* Playlists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlists.swift; sourceTree = "<group>"; };
-		474AF7D91D39629500E56795 /* Tracks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracks.swift; sourceTree = "<group>"; };
+		472766C41D3C8DDE00FBE48B /* TrackDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackDetailViewController.swift; sourceTree = "<group>"; };
 		476C02711D39821B003698E6 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		476C02731D39CCAB003698E6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		476C02751D39DB2A003698E6 /* PlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
@@ -103,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				47FC990E1D3A9D940003667D /* Networking.swift */,
-				474AF7D91D39629500E56795 /* Tracks.swift */,
 				472766C21D3BFCDC00FBE48B /* Playlists.swift */,
 				476C02731D39CCAB003698E6 /* User.swift */,
 			);
@@ -126,6 +125,7 @@
 				476C02711D39821B003698E6 /* WebViewController.swift */,
 				476C02751D39DB2A003698E6 /* PlaylistViewController.swift */,
 				472766BE1D3BE0D100FBE48B /* TracksViewController.swift */,
+				472766C41D3C8DDE00FBE48B /* TrackDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -285,12 +285,12 @@
 				470141A31D395629000E2EF4 /* LoginViewController.swift in Sources */,
 				470141961D395565000E2EF4 /* shauncloud.xcdatamodeld in Sources */,
 				47FC990F1D3A9D940003667D /* Networking.swift in Sources */,
+				472766C51D3C8DDE00FBE48B /* TrackDetailViewController.swift in Sources */,
 				472766BF1D3BE0D100FBE48B /* TracksViewController.swift in Sources */,
 				476C02761D39DB2A003698E6 /* PlaylistViewController.swift in Sources */,
 				476C02741D39CCAB003698E6 /* User.swift in Sources */,
 				4701418E1D395565000E2EF4 /* AppDelegate.swift in Sources */,
 				476C02721D39821B003698E6 /* WebViewController.swift in Sources */,
-				474AF7DA1D39629500E56795 /* Tracks.swift in Sources */,
 				472766C31D3BFCDC00FBE48B /* Playlists.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

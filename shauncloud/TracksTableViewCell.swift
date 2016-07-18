@@ -10,9 +10,15 @@ import UIKit
 
 class TracksTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var playlistImage: UIImageView!
+    @IBOutlet weak var trackLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -20,5 +26,6 @@ class TracksTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 
 }

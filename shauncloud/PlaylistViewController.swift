@@ -61,21 +61,21 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         
-        let playlistIndex = Playlists.userPlaylists.playlistTitles.indexOf(Playlists.userPlaylists.playlistTitles[indexPath.row])
-        
-        let playlistIndexPath = NSIndexPath(forRow: playlistIndex!, inSection: 0)
-        
-        if let cell = self.collectionView.cellForItemAtIndexPath(playlistIndexPath) as? PlaylistCollectionViewCell {
-            cell.titleLabel.text = Playlists.userPlaylists.playlistTitles[playlistIndexPath.row]
-            
-            if let url = NSURL(string: Playlists.userPlaylists.playlistArtURL[playlistIndexPath.row]){
-                if let data = NSData(contentsOfURL: url) {
-                    cell.updateWithImage(UIImage(data: data))
-                } else {
-                    cell.updateWithImage(UIImage(named: "download"))
-                }
-            }
-        }
+//        let playlistIndex = Playlists.userPlaylists.playlistTitles.indexOf(Playlists.userPlaylists.playlistTitles[indexPath.row])
+//        
+//        let playlistIndexPath = NSIndexPath(forRow: playlistIndex!, inSection: 0)
+//        
+//        if let cell = self.collectionView.cellForItemAtIndexPath(playlistIndexPath) as? PlaylistCollectionViewCell {
+//            cell.titleLabel.text = Playlists.userPlaylists.playlistTitles[playlistIndexPath.row]
+//            
+//            if let url = NSURL(string: Playlists.userPlaylists.playlistArtURL[playlistIndexPath.row]){
+//                if let data = NSData(contentsOfURL: url) {
+//                    cell.updateWithImage(UIImage(data: data))
+//                } else {
+//                    cell.updateWithImage(UIImage(named: "download"))
+//                }
+//            }
+//        }
 
         
 //        networking.getPlaylist() { responseObject, error in
@@ -156,7 +156,9 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
         if let row = sender?.row {
             let vc = segue.destinationViewController as! TracksViewController
             vc.playlistTitle.title = Playlists.userPlaylists.playlistTitles[row]
-            vc.numberOfTracks = Playlists.userPlaylists.playlistTracks[row]
+            vc.numberOfTracks = Playlists.userPlaylists.playlistTrackCount[row]
+            vc.playlistArtURL = Playlists.userPlaylists.playlistArtURL[row]
+            
         }
 
     }

@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
 
                     Playlists.userPlaylists.playlistArtURL.append(artURL)
                     Playlists.userPlaylists.playlistTitles.append(title)
-                    Playlists.userPlaylists.playlistTracks.append(tracks)
+                    Playlists.userPlaylists.playlistTrackCount.append(tracks)
                 }
             }
             else {
@@ -61,6 +61,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func signInPressed(sender: AnyObject) {
         //networking.requestAuthenication()
+        networking.getPlaylist() { responseObject, error in
+            if let json = responseObject {
+                print(json[13]["tracks", 0]["title"])
+            }
+        
+        }
         
     }
     

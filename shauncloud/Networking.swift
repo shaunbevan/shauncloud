@@ -91,7 +91,6 @@ struct Networking {
     
     func requestPlaylist(completionHandler: (JSON?, NSError?) ->()) {
         let token = keychain[keychainKey]
-        print("Requesting Playlist")
         if let token = token {
             let playlistEndpoint: String = "https://api.soundcloud.com/me/playlists?oauth_token=\(token)"
             Alamofire.request(.GET, playlistEndpoint) .responseJSON { response in
@@ -104,7 +103,6 @@ struct Networking {
             }
         }
     }
-    
     
 //    func requestUserPlaylist(){
 //        let token = keychain[keychainKey]
