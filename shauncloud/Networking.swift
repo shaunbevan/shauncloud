@@ -104,6 +104,25 @@ struct Networking {
         }
     }
     
+    func deleteTrack(completionHandler: (JSON?, NSError?) -> ()) {
+        let token = keychain[keychainKey]
+        
+        if let token = token {
+            let trackid = "230726323"
+            // https://api.soundcloud.com/me/tracks/230726323?oauth_token=1-254567-4438611-33d45464b0610c4
+            let track: String = "https://api.soundcloud.com/me/tracks/\(trackid)?oauth_token=\(token)"
+            Alamofire.request(.DELETE, track) .responseJSON { response in
+                switch response.result {
+                case .Success(let value):
+                    completionHandler(JSON(value), nil)
+                case .Failure(let error):
+                    completionHandler(nil, error)
+            
+                }
+            }
+        }
+    }
+    
     func searchTracks(completionHandler: (JSON?, NSError?) -> ()) {
         requestSearch(completionHandler)
     }
@@ -112,6 +131,7 @@ struct Networking {
         let token = keychain[keychainKey]
         
         if let token = token {
+            // Static string, need to change
             let query: String = "https://api.soundcloud.com/me/tracks?oauth_token=\(token)&q=dogs"
             Alamofire.request(.GET, query) .responseJSON { response in
                 switch response.result {

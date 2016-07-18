@@ -22,12 +22,17 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+        
         collectionView.backgroundColor = UIColor.whiteColor()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         networking.getPlaylist() { responseObject, error in
+
             
             var newPlaylist = [String]()
             var newArtURL = [String]()

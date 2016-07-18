@@ -15,12 +15,10 @@ class LoginViewController: UIViewController {
     
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var playlistButton: UIButton!
     var networking = Networking()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        playlistButton.hidden = true
         
         // Initial load of user data
         networking.getUser() { responseObject, error in
@@ -34,7 +32,6 @@ class LoginViewController: UIViewController {
         networking.getPlaylist() { responseObject, error in
             if let json = responseObject {
                 self.spinner.stopAnimating()
-                self.playlistButton.hidden = false
                 for index in 0..<json.count {
 
                     let artURL = json[index]["artwork_url"].stringValue
@@ -60,22 +57,10 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func signInPressed(sender: AnyObject) {
-        //networking.requestAuthenication()
-        networking.searchTracks(){ responObject, error in
-            
-            if let json = responObject {
-                print(json)
-            }
-        
-        }
+        networking.requestAuthenication()
 
         
     }
-    
-    @IBAction func getInfoPressed(sender: AnyObject) {
-        self.performSegueWithIdentifier("showPlaylist", sender: self)
-    }
-    
     
 
 }

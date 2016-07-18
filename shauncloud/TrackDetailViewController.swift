@@ -53,6 +53,24 @@ class TrackDetailViewController: UIViewController {
         }
     }
 
+    @IBAction func removeTrackFromPlaylist(sender: AnyObject) {
+        // Remove track from playlist
+        let alert = UIAlertController(title: "Are you sure?", message: "Delete track", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) in
+            print("Deleting track")
+            self.networking.deleteTrack() { responseObject, error in
+                if let response = responseObject {
+                    print(response)
+                } else {
+                    print(error)
+                }
+            }
+        }))
+
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
