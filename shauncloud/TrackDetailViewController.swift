@@ -32,9 +32,7 @@ class TrackDetailViewController: UIViewController {
             
             if let json = responseObject {
                 let playlistIndex = Playlists.userPlaylists.playlistTitles.indexOf(self.songLabelText!)
-                
-                print(playlistIndex!)
-                print(self.index!)
+
                 let artistName = json[playlistIndex!]["tracks", self.index!]["user"]["username"].stringValue
                 let songName = json[playlistIndex!]["tracks", self.index!]["title"].stringValue
                 let description = json[playlistIndex!]["tracks", self.index!]["description"].stringValue

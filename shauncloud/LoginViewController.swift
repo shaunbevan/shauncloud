@@ -60,13 +60,8 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func signInPressed(sender: AnyObject) {
-        //networking.requestAuthenication()
-        networking.getPlaylist() { responseObject, error in
-            if let json = responseObject {
-                print(json[13]["tracks", 0]["title"])
-            }
-        
-        }
+        networking.requestAuthenication()
+
         
     }
     
