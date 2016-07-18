@@ -60,7 +60,14 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func signInPressed(sender: AnyObject) {
-        networking.requestAuthenication()
+        //networking.requestAuthenication()
+        networking.searchTracks(){ responObject, error in
+            
+            if let json = responObject {
+                print(json)
+            }
+        
+        }
 
         
     }

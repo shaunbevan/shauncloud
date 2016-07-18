@@ -104,6 +104,27 @@ struct Networking {
         }
     }
     
+    func searchTracks(completionHandler: (JSON?, NSError?) -> ()) {
+        requestSearch(completionHandler)
+    }
+    
+    func requestSearch(completionHandler: (JSON?, NSError?) -> ()) {
+        let token = keychain[keychainKey]
+        
+        if let token = token {
+            let query: String = "https://api.soundcloud.com/me/tracks?oauth_token=\(token)&q=dogs"
+            Alamofire.request(.GET, query) .responseJSON { response in
+                switch response.result {
+                case .Success(let value):
+                    completionHandler(JSON(value), nil)
+                case .Failure(let error):
+                    completionHandler(nil, error)
+                }
+            }
+        
+        }
+    }
+    
 //    func requestUserPlaylist(){
 //        let token = keychain[keychainKey]
 //        print(token)
