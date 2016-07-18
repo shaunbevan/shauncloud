@@ -151,7 +151,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let searchText = self.resultSearchController.searchBar.text
         
         if let query = searchText {
-            print(query)
+            
             spinner.startAnimating()
             
             networking.searchTracks(query) { responseObject, error in
@@ -174,9 +174,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     self.tableView.reloadData()
                     
                 }
-            }        }
+            }
+        }
         
-  
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
