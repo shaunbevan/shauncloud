@@ -10,10 +10,13 @@ import UIKit
 import OAuthSwift
 import Alamofire
 import SwiftyJSON
+import KeychainAccess
 
 class LoginViewController: UIViewController {
     
     var networking = Networking()
+    private let keychain = Keychain(service: "com.shaunbevan.shauncloud")
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +58,13 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func signInPressed(sender: AnyObject) {
-        networking.requestAuthenication()
-
+//        do {
+//            try keychain.remove("shauncloud")
+//            print("Key removed")
+//        } catch let error {
+//            print("error: \(error)")
+//        }
+        //networking.putTrackInPlaylist("", tracks: [""])
         
     }
     

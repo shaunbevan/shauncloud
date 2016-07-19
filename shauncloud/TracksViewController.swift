@@ -24,6 +24,8 @@ class TracksViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // TODO: CHECK FOR CHANGES TO PLAYLIST TRACKS
+        
         // Fetch tracks from playlist endpoint
         networking.getPlaylist() { responseObject, error in
             

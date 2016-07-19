@@ -15,9 +15,11 @@ class SearchDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var tableView: UITableView!
     
     var networking = Networking()
+    var playlistID = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Track ID: \(trackID!)")
 
         // Do any additional setup after loading the view.
     }
@@ -37,7 +39,8 @@ class SearchDetailViewController: UIViewController, UITableViewDelegate, UITable
                     
                     let artURL = json[index]["artwork_url"].stringValue
                     let title = json[index]["title"].stringValue
-                    
+                    let id = json[index]["id"].stringValue
+                    self.playlistID.append(id)
                     newPlaylist.append(title)
                     newArtURL.append(artURL)
                 }
@@ -93,20 +96,36 @@ class SearchDetailViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
+    var tracks = [String]()
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-            
-            if cell.accessoryType == .Checkmark {
-                cell.accessoryType = .None
+        
+        let row = indexPath.row
+        let selectedPlaylist = self.playlistID[row]
+        
+        self.tracks.removeAll(keepCapacity: false)
+        
+        networking.getPlaylist() { response, error in
+            if let json = response {
+                let trackCount = json[row]["tracks"].count
+                for index in 0..<trackCount {
+                    let id = json[row]["tracks", index]["id"].stringValue
+                    self.tracks.append(id)
+                }
+                if let newTrack = self.trackID {
+                    self.tracks.insert(newTrack, atIndex: 0)
+                }
             } else {
-                cell.accessoryType = .Checkmark
+                print(error)
             }
-        }
-    }
+            
+            self.networking.addTrack(selectedPlaylist, tracks: self.tracks) { response, error in
+                self.navigationController?.popToRootViewControllerAnimated(true)
 
-    @IBAction func doneButtonPressed(sender: AnyObject) {
+            }
         
-        // Save tracks
-        
+        }
+
+    
     }
 }

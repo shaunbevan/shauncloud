@@ -52,8 +52,8 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
             var newArtURL = [String]()
             
             if let json = responseObject {
+
                 for index in 0..<json.count {
-                    
                     let artURL = json[index]["artwork_url"].stringValue
                     let title = json[index]["title"].stringValue
                     

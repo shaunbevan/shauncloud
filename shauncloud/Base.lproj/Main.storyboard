@@ -54,7 +54,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KCM-cG-Q8n">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KCM-cG-Q8n">
                                 <rect key="frame" x="0.0" y="64" width="600" height="532"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -62,18 +62,18 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IfE-gz-JuY" id="jMK-AV-vmM">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9B4-hG-3DW">
-                                                    <rect key="frame" x="79" y="0.0" width="486" height="49"/>
+                                                    <rect key="frame" x="80" y="0.0" width="485" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="download" id="lSa-Dp-Igt">
-                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
+                                                    <rect key="frame" x="15" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -104,7 +104,7 @@
             </objects>
             <point key="canvasLocation" x="2786" y="1916"/>
         </scene>
-        <!--Search Detail View Controller-->
+        <!--Choose Playlist-->
         <scene sceneID="KZs-UU-Vst">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="QPb-E5-abX" customClass="SearchDetailViewController" customModule="shauncloud" customModuleProvider="target" sceneMemberID="viewController">
@@ -156,13 +156,7 @@
                             <constraint firstItem="UAd-EZ-dOH" firstAttribute="bottom" secondItem="0Wz-SO-ADn" secondAttribute="top" id="xg4-gk-bYz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="0zR-LF-3fG">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="FG6-5B-NrK">
-                            <connections>
-                                <action selector="doneButtonPressed:" destination="QPb-E5-abX" id="mr1-pD-PbY"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Choose Playlist" id="0zR-LF-3fG"/>
                     <connections>
                         <outlet property="tableView" destination="UAd-EZ-dOH" id="xJQ-mI-Wke"/>
                     </connections>
@@ -359,13 +353,13 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y89-R4-vCY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y89-R4-vCY">
                                 <rect key="frame" x="20" y="314" width="560" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBd-nn-LwT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBd-nn-LwT">
                                 <rect key="frame" x="20" y="341" width="560" height="96"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -379,12 +373,12 @@
                             <constraint firstItem="PMw-oZ-KhW" firstAttribute="top" secondItem="lvW-C0-R87" secondAttribute="bottom" constant="13" id="Gvm-JS-ENX"/>
                             <constraint firstItem="Y89-R4-vCY" firstAttribute="leading" secondItem="ODd-XQ-jEK" secondAttribute="leadingMargin" id="I9w-sy-xy2"/>
                             <constraint firstItem="vBd-nn-LwT" firstAttribute="trailing" secondItem="ODd-XQ-jEK" secondAttribute="trailingMargin" id="Ot9-Vy-j1p"/>
-                            <constraint firstItem="PIY-WW-yUw" firstAttribute="top" secondItem="vBd-nn-LwT" secondAttribute="bottom" constant="163" id="QdL-li-AzF"/>
+                            <constraint firstItem="PIY-WW-yUw" firstAttribute="top" secondItem="vBd-nn-LwT" secondAttribute="bottom" constant="114" id="QdL-li-AzF"/>
                             <constraint firstItem="PMw-oZ-KhW" firstAttribute="leading" secondItem="ODd-XQ-jEK" secondAttribute="leadingMargin" id="RPS-9S-i5F"/>
                             <constraint firstItem="vBd-nn-LwT" firstAttribute="leading" secondItem="ODd-XQ-jEK" secondAttribute="leadingMargin" id="RqF-ce-74a"/>
-                            <constraint firstItem="PIY-WW-yUw" firstAttribute="top" secondItem="Y89-R4-vCY" secondAttribute="bottom" constant="265" id="WRG-tm-Yze"/>
+                            <constraint firstItem="PIY-WW-yUw" firstAttribute="top" secondItem="Y89-R4-vCY" secondAttribute="bottom" constant="216" id="WRG-tm-Yze"/>
                             <constraint firstItem="Y89-R4-vCY" firstAttribute="top" secondItem="PMw-oZ-KhW" secondAttribute="bottom" constant="8" id="azd-fe-PJT"/>
-                            <constraint firstItem="PIY-WW-yUw" firstAttribute="top" secondItem="PMw-oZ-KhW" secondAttribute="bottom" constant="294" id="kSw-9E-gGz"/>
+                            <constraint firstItem="PIY-WW-yUw" firstAttribute="top" secondItem="PMw-oZ-KhW" secondAttribute="bottom" constant="245" id="kSw-9E-gGz"/>
                             <constraint firstItem="PIY-WW-yUw" firstAttribute="top" secondItem="lvW-C0-R87" secondAttribute="bottom" constant="328" id="ntq-CZ-Dd2"/>
                             <constraint firstItem="Y89-R4-vCY" firstAttribute="trailing" secondItem="ODd-XQ-jEK" secondAttribute="trailingMargin" id="oLD-oa-lx9"/>
                             <constraint firstItem="lvW-C0-R87" firstAttribute="top" secondItem="bIf-3h-bi8" secondAttribute="bottom" constant="8" symbolic="YES" id="qrC-Lp-d33"/>
@@ -438,12 +432,28 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qo-CI-Mfj">
+                                <rect key="frame" x="254" y="558" width="92" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="92" id="8am-rO-8c2"/>
+                                    <constraint firstAttribute="height" constant="22" id="Ju4-cj-Bv6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Sign in">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logInButtonPressed:" destination="sko-c7-r25" eventType="touchUpInside" id="KSp-cb-v60"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hLR-ey-G6s" firstAttribute="top" secondItem="0En-3R-Hzx" secondAttribute="bottom" constant="8" symbolic="YES" id="2iR-q4-9Su"/>
+                            <constraint firstAttribute="bottom" secondItem="9Qo-CI-Mfj" secondAttribute="bottom" constant="20" symbolic="YES" id="31j-yY-Uo0"/>
                             <constraint firstItem="hLR-ey-G6s" firstAttribute="leading" secondItem="0En-3R-Hzx" secondAttribute="leading" id="AxJ-Ql-YZB"/>
                             <constraint firstItem="0En-3R-Hzx" firstAttribute="trailing" secondItem="SGA-A8-Skr" secondAttribute="trailingMargin" id="FrE-lE-2EO"/>
+                            <constraint firstItem="9Qo-CI-Mfj" firstAttribute="centerX" secondItem="hLR-ey-G6s" secondAttribute="centerX" id="H8d-bH-bev"/>
                             <constraint firstItem="0En-3R-Hzx" firstAttribute="centerY" secondItem="SGA-A8-Skr" secondAttribute="centerY" id="Mf7-Nn-enE"/>
                             <constraint firstItem="WCG-E9-QtT" firstAttribute="top" secondItem="hLR-ey-G6s" secondAttribute="bottom" constant="261" id="QWw-ih-Qq1"/>
                             <constraint firstItem="hLR-ey-G6s" firstAttribute="trailing" secondItem="0En-3R-Hzx" secondAttribute="trailing" id="e2q-K7-dwk"/>
@@ -453,6 +463,7 @@
                     <connections>
                         <outlet property="loadingLabel" destination="hLR-ey-G6s" id="u45-Ky-qyl"/>
                         <outlet property="logoLabel" destination="0En-3R-Hzx" id="vCP-rN-GGu"/>
+                        <outlet property="signInButton" destination="9Qo-CI-Mfj" id="tSR-SX-18G"/>
                         <segue destination="Y9C-81-9Xa" kind="show" identifier="showPlaylist" id="OD9-x5-Mzs"/>
                     </connections>
                 </viewController>

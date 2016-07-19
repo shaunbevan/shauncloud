@@ -17,5 +17,6 @@ class Playlists {
     var playlistImages: [UIImage]?
     var playlistArtURL = [String]()
     var playlistTrackCount = [Int]()
+    var playlistIDs = [String]()
     
 }
