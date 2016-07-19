@@ -104,24 +104,7 @@ struct Networking {
         }
     }
     
-    func deleteTrack(completionHandler: (JSON?, NSError?) -> ()) {
-        let token = keychain[keychainKey]
-        
-        if let token = token {
-            let trackid = "230726323"
-            // https://api.soundcloud.com/me/tracks/230726323?oauth_token=1-254567-4438611-33d45464b0610c4
-            let track: String = "https://api.soundcloud.com/me/tracks/\(trackid)?oauth_token=\(token)"
-            Alamofire.request(.DELETE, track) .responseJSON { response in
-                switch response.result {
-                case .Success(let value):
-                    completionHandler(JSON(value), nil)
-                case .Failure(let error):
-                    completionHandler(nil, error)
-            
-                }
-            }
-        }
-    }
+
     
     // Search
     
@@ -187,6 +170,45 @@ struct Networking {
                 }
                 }
             }
+    }
+    
+    func removeTrack(playlist: String, tracks: [String], completionHandler: (String?, NSError?) -> ()) {
+        removeTrackFromPlaylist(playlist, tracks: tracks, completionHandler: completionHandler)
+    }
+    
+    
+    func removeTrackFromPlaylist(playlist: String, tracks: [String], completionHandler: (String?, NSError?) ->()) {
+        let token = keychain[keychainKey]
+        
+        
+        if let token = token {
+            
+            var trackIdentifiers = tracks
+            
+            // If the last track in the playlist is deleted, remove track by setting id to 0
+            if trackIdentifiers.isEmpty {
+                trackIdentifiers.append("0")
+            }
+            
+            let parameters: [String: AnyObject] = [
+                "oauth_token": token,
+                "playlist": [
+                    "tracks": trackIdentifiers.map { ["id": "\($0)"] }
+                ]
+            ]
+            
+            let endpoint: String = "https://api.soundcloud.com/me/playlists/\(playlist)"
+            Alamofire.request(.PUT, endpoint, parameters: parameters) .responseJSON { response in
+                print("Status Code: \(response.response!.statusCode)")
+                switch response.result {
+                case .Success(let value):
+                    completionHandler(value as? String, nil)
+                case .Failure(let error):
+                    completionHandler(nil, error)
+                }
+            }
+        }
+
     }
     
 //    func requestUserPlaylist(){

@@ -18,6 +18,9 @@ class TrackDetailViewController: UIViewController {
     var songLabelText: String?
     var networking = Networking()
     var index: Int?
+    var trackID: String?
+    var trackArray = [String]()
+    var playlistID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()        
@@ -37,7 +40,18 @@ class TrackDetailViewController: UIViewController {
                 let songName = json[playlistIndex!]["tracks", self.index!]["title"].stringValue
                 let description = json[playlistIndex!]["tracks", self.index!]["description"].stringValue
                 let artURL = json[playlistIndex!]["tracks", self.index!]["artwork_url"].stringValue
+                let playlist = json[playlistIndex!]["id"].stringValue
+                let selectedTrack = json[playlistIndex!]["tracks", self.index!]["id"].stringValue
+
+                let trackCount = json[playlistIndex!]["tracks"].count
                 
+                for index in 0..<trackCount {
+                    let tracks = json[playlistIndex!]["tracks", index]["id"].stringValue
+                    self.trackArray.append(tracks)
+                }
+                
+                self.playlistID = playlist
+                self.trackID = selectedTrack
                 self.artistLabel.text = artistName
                 self.songLabel.text = songName
                 self.descriptionLabel.text = description
@@ -55,16 +69,29 @@ class TrackDetailViewController: UIViewController {
 
     @IBAction func removeTrackFromPlaylist(sender: AnyObject) {
         // Remove track from playlist
+        print("Before array: \(self.trackArray)")
+
+        
+        if let track = self.trackID {
+            let deleteTrackIndex = self.trackArray.indexOf(track)
+            
+            if let index = deleteTrackIndex {
+                self.trackArray.removeAtIndex(index)
+            }
+        }
+        
+        print("After array: \(self.trackArray)")
+
+        
+        
         let alert = UIAlertController(title: "Are you sure?", message: "Delete track", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) in
-            print("Deleting track")
-            self.networking.deleteTrack() { responseObject, error in
-                if let response = responseObject {
-                    print(response)
-                } else {
-                    print(error)
-                }
+            print("Deleting track: \(self.trackID)")
+            print("Playlist: \(self.playlistID)")
+            
+            self.networking.removeTrack(self.playlistID!, tracks: self.trackArray) {response, error in
+            
             }
         }))
 
