@@ -115,22 +115,26 @@ struct Networking {
     func requestSearch(query: String, completionHandler: (JSON?, NSError?) -> ()) {
         let token = keychain[keychainKey]
         
-        let searchQuery = query.removeWhitespace()
+        let searchQuery = query.stringByAddingPercentEncodingForURLQueryParameter()
+        print(searchQuery)
         
         if let token = token {
-            let parameters: [String: AnyObject] = [
-                "oauth_token": token,
-                "q": searchQuery
-            ]
             
-            let endpoint: String = "https://api.soundcloud.com/me/tracks"
+            if let queryString = searchQuery {
+                let parameters: [String: AnyObject] = [
+                    "oauth_token": token,
+                    "q": queryString
+                ]
+            
+                let endpoint: String = "https://api.soundcloud.com/tracks"
 
-            Alamofire.request(.GET, endpoint, parameters: parameters) .responseJSON { response in
-                switch response.result {
-                case .Success(let value):
-                    completionHandler(JSON(value), nil)
-                case .Failure(let error):
-                    completionHandler(nil, error)
+                Alamofire.request(.GET, endpoint, parameters: parameters) .responseJSON { response in
+                    switch response.result {
+                    case .Success(let value):
+                        completionHandler(JSON(value), nil)
+                    case .Failure(let error):
+                        completionHandler(nil, error)
+                    }
                 }
             }
         
@@ -240,11 +244,8 @@ struct Networking {
 }
 
 extension String {
-    func replace(string:String, replacement:String) -> String {
-        return self.stringByReplacingOccurrencesOfString(string, withString: replacement, options: NSStringCompareOptions.LiteralSearch, range: nil)
-    }
-    
-    func removeWhitespace() -> String {
-        return self.replace(" ", replacement: "%20")
+    func stringByAddingPercentEncodingForURLQueryParameter() -> String? {
+        let allowedCharacters = NSCharacterSet.URLQueryAllowedCharacterSet()
+        return stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)
     }
 }

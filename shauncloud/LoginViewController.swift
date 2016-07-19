@@ -50,6 +50,11 @@ class LoginViewController: UIViewController {
 //        }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        networking.requestAuthenication()
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

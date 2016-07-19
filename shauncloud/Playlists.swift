@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class Playlists {
     
     static let userPlaylists = Playlists()
     
-    var playlists: [String]?
+    // Contains a dictionary of all playlists and their tracks
+    var playlists: [String: [String]] = [:]
+    
+    
     var playlistTitles = [String]()
-    var playlistImages: [UIImage]?
     var playlistArtURL = [String]()
     var playlistTrackCount = [Int]()
     var playlistIDs = [String]()

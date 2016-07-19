@@ -8,7 +8,7 @@
 
 import UIKit
 import KeychainAccess
-
+import SwiftyJSON
 class LoadViewController: UIViewController {
     
     let networking = Networking()
@@ -23,9 +23,39 @@ class LoadViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Keychain: \(keychain[keychainKey])")
+        
+//        let playlist: Array = ["1", "2", "3", "4", "5"]
+//        let tracks: Array = [["123", "456"], ["789", "012"], ["345", "678"], ["901", "234"], ["567", "890"]]
+//
+//        
+//        for (index, element) in playlist.enumerate()
+//        {
+//            Playlists.userPlaylists.playlists[element] = tracks[index]
+//        }
+//        
+//        print(Playlists.userPlaylists.playlists)
+        
+        //print("Playlist 1: \(Playlists.userPlaylists.playlists["1"])")
+        
 
+        // Playlist Playlists.userPlaylists.playlists[playlistID]
+        // Track: Playlists.userPlaylists.playlists[playlistID, index]
+        
+        /*
+         json = ["playlist": [
+        
+         
+ 
+ 
+        */
     }
     
+    
+    var playlistArray = [String]()
+    var trackArray = [[String]]()
+    var buildTrackArray = [String]()
+
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -45,29 +75,64 @@ class LoadViewController: UIViewController {
                 }
             }
             
-            
+
             // Initial load of playlist data
             networking.getPlaylist() { responseObject, error in
                 if let json = responseObject {
+                    
+                    // For each playlist there are a number of tracks
+                    // For each track, there is an id
+                    // I need take each id for each track and put them in a single array for a single playlist
+                    // I need to combine all those arrays into one big array of tracks
+
                     for index in 0..<json.count {
                         
                         let artURL = json[index]["artwork_url"].stringValue
                         let title = json[index]["title"].stringValue
                         let tracks = json[index]["tracks"].count
+                        let playlistID = json[index]["id"].stringValue
                         
+                        // This will loop the amount of tracks in a playlist
+                        for i in 0..<tracks {
+                            // This will assign the trackID of each track in a playlist
+                            let trackID = json[index]["tracks", i]["id"].stringValue
+                            // Add track to single array
+                            self.buildTrackArray.insert(trackID, atIndex: i)
+                            
+                        }
+                        
+                        // Add tempArray holding a single playlist's track to a bigger array
+                        
+                        self.trackArray.append(self.buildTrackArray)
+                        self.buildTrackArray.removeAll(keepCapacity: false)
+                        self.playlistArray.append(playlistID)
+                        
+
+                        Playlists.userPlaylists.playlistIDs.append(playlistID)
                         Playlists.userPlaylists.playlistArtURL.append(artURL)
                         Playlists.userPlaylists.playlistTitles.append(title)
                         Playlists.userPlaylists.playlistTrackCount.append(tracks)
                     }
+                    
+ 
+                }
+//                print("Tracks: \(self.trackArray)")
+//                print("Playlists: \(self.playlistArray)")
+//                print(self.trackArray.count, self.playlistArray.count)
+                
+                for (index, element) in self.playlistArray.enumerate()
+                {
+                    Playlists.userPlaylists.playlists[element] = self.trackArray[index]
                 }
                 
+
                 self.performSegueWithIdentifier("showPlaylist", sender: self)
                 
             }
-            
+
         }
 
-        
+
     }
 
     @IBAction func logInButtonPressed(sender: AnyObject) {

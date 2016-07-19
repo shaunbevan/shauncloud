@@ -24,8 +24,8 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.spinner.color = UIColor.blueColor()
+
+        self.spinner.color = UIColor.lightGrayColor()
         self.spinner.frame = CGRectMake(0.0, 0.0, 10.0, 10.0)
         self.spinner.center = self.view.center
         self.view.addSubview(spinner)
@@ -50,15 +50,24 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
             self.spinner.stopAnimating()
             var newPlaylist = [String]()
             var newArtURL = [String]()
+            var newIDs = [String]()
             
             if let json = responseObject {
 
                 for index in 0..<json.count {
                     let artURL = json[index]["artwork_url"].stringValue
                     let title = json[index]["title"].stringValue
+                    let id = json[index]["id"].stringValue
                     
+                    
+                    newIDs.append(id)
                     newPlaylist.append(title)
                     newArtURL.append(artURL)
+                }
+                
+                if newIDs == Playlists.userPlaylists.playlistIDs {
+                } else {
+                    Playlists.userPlaylists.playlistIDs = newIDs
                 }
                 
                 if newArtURL == Playlists.userPlaylists.playlistArtURL {
@@ -176,6 +185,7 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
             vc.playlistTitle.title = Playlists.userPlaylists.playlistTitles[row]
             vc.numberOfTracks = Playlists.userPlaylists.playlistTrackCount[row]
             vc.playlistArtURL = Playlists.userPlaylists.playlistArtURL[row]
+            vc.playlistID = Playlists.userPlaylists.playlistIDs[row]
             
         }
 
