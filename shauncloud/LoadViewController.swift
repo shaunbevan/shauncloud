@@ -24,6 +24,10 @@ class LoadViewController: UIViewController {
         super.viewDidLoad()
         print("Keychain: \(keychain[keychainKey])")
         
+        let customFont = UIFont(name: "HelveticaNeue-Light", size: 17.0)
+        UINavigationBar.appearance().titleTextAttributes = [ NSFontAttributeName: customFont!]
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: customFont!], forState: UIControlState.Normal)
+        
 //        let playlist: Array = ["1", "2", "3", "4", "5"]
 //        let tracks: Array = [["123", "456"], ["789", "012"], ["345", "678"], ["901", "234"], ["567", "890"]]
 //
@@ -116,9 +120,6 @@ class LoadViewController: UIViewController {
                     
  
                 }
-//                print("Tracks: \(self.trackArray)")
-//                print("Playlists: \(self.playlistArray)")
-//                print(self.trackArray.count, self.playlistArray.count)
                 
                 for (index, element) in self.playlistArray.enumerate()
                 {

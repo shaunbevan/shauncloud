@@ -24,7 +24,7 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
         self.spinner.color = UIColor.lightGrayColor()
         self.spinner.frame = CGRectMake(0.0, 0.0, 10.0, 10.0)
         self.spinner.center = self.view.center
@@ -40,7 +40,12 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.lightGrayColor()
+        
+
         self.updatePlaylist()
+        
     }
     
     func updatePlaylist(){
@@ -84,8 +89,7 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
             }
         }
     }
-
-    
+        
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         
 //        let playlistIndex = Playlists.userPlaylists.playlistTitles.indexOf(Playlists.userPlaylists.playlistTitles[indexPath.row])

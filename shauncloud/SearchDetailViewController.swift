@@ -81,14 +81,17 @@ class SearchDetailViewController: UIViewController, UITableViewDelegate, UITable
         let cellIdentifier = "Cell"
         let row = indexPath.row
         
-        let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
-        cell.textLabel?.text = Playlists.userPlaylists.playlistTitles[row]
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! TracksTableViewCell
+        
+        cell.searchPlaylistTitleLabel?.text = Playlists.userPlaylists.playlistTitles[row]
+        
+        cell.searchPlaylistNumberLabel?.text = String(row+1)
         
         if let url = NSURL(string: Playlists.userPlaylists.playlistArtURL[row]){
             if let data = NSData(contentsOfURL: url) {
-                cell.imageView?.image = UIImage(data: data)
+                cell.searchPlaylistImage?.image = UIImage(data: data)
             } else {
-                cell.imageView?.image = UIImage(named: "download")
+                cell.searchPlaylistImage?.image = UIImage(named: "download")
             }
         }
         

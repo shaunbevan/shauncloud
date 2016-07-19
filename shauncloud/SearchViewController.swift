@@ -91,24 +91,28 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) 
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! TracksTableViewCell
         
+        let row = indexPath.row
+        cell.searchCellNumberLabel?.text = String(row+1)
         if self.resultSearchController.active {
-            cell.textLabel?.text = self.filteredArray[indexPath.row]
+            cell.searchCellTitleLabel?.text = self.filteredArray[indexPath.row]
             if let url = NSURL(string: self.filteredArrayImages[indexPath.row]) {
                 if let data = NSData(contentsOfURL: url) {
-                    cell.imageView?.image = UIImage(data: data)
+                    cell.searchCellImage?.image = UIImage(data: data)
+                } else {
+                    cell.searchCellImage?.image = UIImage(named: "download")
                 }
             }
             
         } else {
-            cell.textLabel!.text = self.array[indexPath.row]
-            cell.imageView?.image = UIImage(named: "download")
+            cell.searchCellTitleLabel!.text = self.array[indexPath.row]
         }
         
         let addTrackIcon = UIImage(named: "addtrack")
         
         let addTrackImage = UIImageView(image: addTrackIcon)
+        
         addTrackImage.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         
         cell.accessoryType = .DisclosureIndicator
@@ -119,15 +123,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         performSegueWithIdentifier("addTrack", sender: indexPath)
-        
-//        if self.resultSearchController.active{
-//            let alert = UIAlertController(title: "\(self.filteredArray[indexPath.row])", message: "", preferredStyle: .Alert)
-//            alert.addAction(UIAlertAction(title: "Add track", style: .Default, handler: nil))
-//            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-//            self.presentViewController(alert, animated: true, completion: nil)
-//        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

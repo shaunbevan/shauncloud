@@ -27,6 +27,7 @@ class TracksViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         if let artURL = self.playlistArtURL {
             if let url = NSURL(string: artURL) {
@@ -66,12 +67,8 @@ class TracksViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             self.tableView.reloadData()
                         }
                 }
-                
-                
             }
-            
         }
-        
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -92,16 +89,17 @@ class TracksViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! TracksTableViewCell
         
         let row = indexPath.row
-        cell.textLabel!.text = self.tracks[row]
+        cell.trackLabel!.text = self.tracks[row]
+        cell.numberLabel!.text = String(row+1)
         
         let artURL = self.trackArtURLs[row]
         
     
         if let url = NSURL(string: artURL) {
             if let data = NSData(contentsOfURL: url){
-                cell.imageView?.image = UIImage(data: data)
+                cell.playlistImage?.image = UIImage(data: data)
             } else {
-                cell.imageView?.image = UIImage(named: "download")
+                cell.playlistImage?.image = UIImage(named: "download")
             }
         }
         
@@ -111,6 +109,11 @@ class TracksViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.performSegueWithIdentifier("showDetail", sender: indexPath)
     }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 60.0
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
