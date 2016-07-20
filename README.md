@@ -2,10 +2,10 @@
 A playlist tracker for all your Soundcloud needs.
 
 ## Dependencies
-* __Alamofire__: Alamofire is an HTTP networking library written in Swift.
-* __KeychainAccess__: Helper functions for storing text in Keychain for iOS, OS X, tvOS and WatchOS
-* __SwiftyJSON__: The better way to deal with JSON data in Swift
-* __OAuthSwift__: Swift based OAuth library for iOS and OSX.
+* [__Alamofire__](https://github.com/Alamofire/Alamofire): Alamofire is an HTTP networking library written in Swift.
+* [__KeychainAccess__](https://github.com/kishikawakatsumi/KeychainAccess): Helper functions for storing text in Keychain for iOS, OS X, tvOS and WatchOS
+* [__SwiftyJSON__](https://github.com/SwiftyJSON/SwiftyJSON): The better way to deal with JSON data in Swift
+* [__OAuthSwift__](https://github.com/OAuthSwift/OAuthSwift): Swift based OAuth library for iOS and OSX.
 
 ## Features
 * Add and remove tracks from playlist
