@@ -79,6 +79,10 @@ class LoadViewController: UIViewController {
                 if let json = responseObject {
                     User.currentUser.username = json["username"].string
                     User.currentUser.playlistCount = json["playlist_count"].intValue
+                    User.currentUser.trackCount = json["track_count"].intValue
+                    User.currentUser.friends = json["followers_count"].stringValue
+                    User.currentUser.avatarURL = json["avatar_url"].stringValue
+                    
                 }
             }
             

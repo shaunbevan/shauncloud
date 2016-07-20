@@ -17,9 +17,27 @@ class LoginViewController: UIViewController {
     var networking = Networking()
     private let keychain = Keychain(service: "com.shaunbevan.shauncloud")
 
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var friendsLabel: UILabel!
+    @IBOutlet weak var tracksLabel: UILabel!
+    @IBOutlet weak var namesLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.namesLabel.text = User.currentUser.username
+        self.friendsLabel.text = User.currentUser.friends
+        
+        if let tracks = User.currentUser.trackCount {
+            self.tracksLabel.text = String(tracks)
+        }
+        
+        if let avatar = User.currentUser.avatarURL {
+            if let url = NSURL(string: avatar) {
+                if let data = NSData(contentsOfURL: url) {
+                    self.profileImage.image = UIImage(data: data)
+                }
+            }
+        }
         
 //        // Initial load of user data
 //        networking.getUser() { responseObject, error in
@@ -52,7 +70,7 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        networking.requestAuthenication()
+        //networking.requestAuthenication()
     }
     
 

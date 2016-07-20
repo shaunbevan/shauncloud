@@ -15,7 +15,9 @@ class User {
     
     var username: String?
     var fullName: String?
+    var avatarURL: String?
     var description: String?
+    var friends: String?
     var playlistCount: Int?
     var trackCount: Int?
     
