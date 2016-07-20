@@ -62,11 +62,6 @@ class LoadViewController: UIViewController {
             // Initial load of playlist data
             networking.getPlaylist() { responseObject, error in
                 if let json = responseObject {
-                    
-                    // For each playlist there are a number of tracks
-                    // For each track, there is an id
-                    // I need take each id for each track and put them in a single array for a single playlist
-                    // I need to combine all those arrays into one big array of tracks
 
                     for index in 0..<json.count {
                         
@@ -75,44 +70,16 @@ class LoadViewController: UIViewController {
                         let tracks = json[index]["tracks"].count
                         let playlistID = json[index]["id"].stringValue
                         
-                        // This will loop the amount of tracks in a playlist
-                        for i in 0..<tracks {
-                            // This will assign the trackID of each track in a playlist
-                            let trackID = json[index]["tracks", i]["id"].stringValue
-                            // Add track to single array
-                            self.buildTrackArray.insert(trackID, atIndex: i)
-                            
-                        }
-                        
-                        // Add tempArray holding a single playlist's track to a bigger array
-                        
-                        self.trackArray.append(self.buildTrackArray)
-                        self.buildTrackArray.removeAll(keepCapacity: false)
-                        self.playlistArray.append(playlistID)
-                        
 
                         Playlists.userPlaylists.playlistIDs.append(playlistID)
                         Playlists.userPlaylists.playlistArtURL.append(artURL)
                         Playlists.userPlaylists.playlistTitles.append(title)
                         Playlists.userPlaylists.playlistTrackCount.append(tracks)
                     }
-                    
- 
                 }
-                
-                for (index, element) in self.playlistArray.enumerate()
-                {
-                    Playlists.userPlaylists.playlists[element] = self.trackArray[index]
-                }
-                
-
                 self.performSegueWithIdentifier("showPlaylist", sender: self)
-                
             }
-
         }
-
-
     }
 
     @IBAction func logInButtonPressed(sender: AnyObject) {

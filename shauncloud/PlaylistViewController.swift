@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class PlaylistViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
+class PlaylistViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -136,6 +136,44 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         self.performSegueWithIdentifier("showTracks", sender: indexPath)
+        
+    }
+    
+    
+    @IBAction func addPlaylistButtonPressed(sender: AnyObject) {
+        
+        let alertController = UIAlertController(title: "Add Playlist", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+            alert -> Void in
+            let playlistName = alertController.textFields![0] as UITextField
+
+            if let name = playlistName.text {
+                self.networking.addPlaylist(name) { response in
+                    if response {
+                        print("Playlist added")
+                        Playlists.userPlaylists.updatePlaylist()
+                    } else {
+                        print("Error: Failed to add playlist")
+                    }
+                }
+            }
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Playlist Name"
+        }
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
         
     }
     

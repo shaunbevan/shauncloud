@@ -104,6 +104,40 @@ struct Networking {
         }
     }
     
+    func addPlaylist(title: String, completionHandler: (success: Bool) -> ()) {
+        createPlaylist(title, completionHandler: completionHandler)
+    }
+    
+    
+    func createPlaylist(title: String, completionHandler: (success: Bool) -> ()) {
+        let token = keychain[keychainKey]
+        
+        if let token = token {
+            
+            let trackIdentifiers = []
+            
+            let parameters: [String: AnyObject] = [
+                "oauth_token": token,
+                "playlist": [
+                    "title": title,
+                    "sharing": "public",
+                    "tracks": trackIdentifiers.map { ["id": "\($0)"] }
+                ]
+            ]
+            let endpoint: String = "https://api.soundcloud.com/playlists"
+            Alamofire.request(.POST, endpoint, parameters: parameters) .responseJSON { response in
+                switch response.result {
+                case .Success(let value):
+                    print(value)
+                    completionHandler(success: true)
+                case .Failure(let error):
+                    print(error)
+                    completionHandler(success: false)
+                }
+            }
+        }
+    }
+    
 
     
     // Search

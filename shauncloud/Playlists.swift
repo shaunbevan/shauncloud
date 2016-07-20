@@ -12,12 +12,9 @@ import SwiftyJSON
 class Playlists {
     
     static let userPlaylists = Playlists()
+    
     let networking = Networking()
-    
-    // Contains a dictionary of all playlists and their tracks
-    var playlists: [String: [String]] = [:]
-    
-    
+        
     var playlistTitles = [String]()
     var playlistArtURL = [String]()
     var playlistTrackCount = [Int]()

@@ -363,7 +363,13 @@
                             <constraint firstItem="1qL-px-kDl" firstAttribute="leading" secondItem="eNM-0N-LT9" secondAttribute="leadingMargin" constant="-20" id="mMa-fK-oza"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Playlists" id="2VB-E1-nfe"/>
+                    <navigationItem key="navigationItem" title="Playlists" id="2VB-E1-nfe">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="nXT-b8-3Pd">
+                            <connections>
+                                <action selector="addPlaylistButtonPressed:" destination="q3N-No-gA3" id="GFK-fV-J01"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="1qL-px-kDl" id="QpB-a5-Blm"/>
                         <segue destination="LUr-un-Hq8" kind="push" identifier="showTracks" id="XhS-AO-nMW"/>

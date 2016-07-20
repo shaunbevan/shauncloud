@@ -21,21 +21,38 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var tracksLabel: UILabel!
     @IBOutlet weak var namesLabel: UILabel!
     
+    let spinner: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    }
-    
-    func refresh(sender:AnyObject) {
-        // Code to refresh table view
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
+        spinner.color = UIColor.lightGrayColor()
+        spinner.frame = CGRectMake(0.0, 0.0, 10.0, 10.0)
+        spinner.center = self.view.center
+        self.view.addSubview(spinner)
+        spinner.bringSubviewToFront(self.view)
+        
+        updateProfile()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        spinner.startAnimating()
         Playlists.userPlaylists.updatePlaylist()
-        User.currentUser.updateUser()
-        
+        User.currentUser.updateUser() { success in
+            if success {
+                print("Success")
+                self.spinner.stopAnimating()
+                self.updateProfile()
+            } else {
+                print("Failed to update user")
+            }
+        }
+    }
+    
+    
+    func updateProfile() {
         self.namesLabel.text = User.currentUser.username
         self.friendsLabel.text = User.currentUser.friends
         
@@ -51,14 +68,13 @@ class LoginViewController: UIViewController {
             }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     
     @IBAction func signOutPressed(sender: AnyObject) {
         networking.requestAuthenication(self)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 }

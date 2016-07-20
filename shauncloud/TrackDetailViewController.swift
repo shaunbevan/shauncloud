@@ -29,7 +29,6 @@ class TrackDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()        
-        
         self.spinner.color = UIColor.lightGrayColor()
         self.spinner.frame = CGRectMake(0.0, 0.0, 10.0, 10.0)
         self.spinner.center = self.view.center
@@ -62,7 +61,8 @@ class TrackDetailViewController: UIViewController {
                     let tracks = json[playlistIndex!]["tracks", index]["id"].stringValue
                     self.trackArray.append(tracks)
                 }
-                
+                print(self.trackID)
+                print(selectedTrack)
                 self.playlistID = playlist
                 self.trackID = selectedTrack
                 self.artistLabel.text = artistName

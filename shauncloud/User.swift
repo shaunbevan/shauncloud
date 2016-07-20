@@ -22,10 +22,8 @@ class User {
     var playlistCount: Int?
     var trackCount: Int?
     
-    func updateUser() {
+    func updateUser(completionHandler: (success: Bool) -> ()){
         networking.getUser() { responseObject, error in
-    
-            
             if let json = responseObject {
                 User.currentUser.username = json["username"].stringValue
                 User.currentUser.playlistCount = json["playlist_count"].intValue
@@ -33,6 +31,8 @@ class User {
                 User.currentUser.friends = json["followers_count"].stringValue
                 User.currentUser.avatarURL = json["avatar_url"].stringValue
             }
+            print("Update User complete")
+            completionHandler(success: true)
         }
     }
     
