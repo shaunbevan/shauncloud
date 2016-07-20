@@ -16,11 +16,6 @@ import SwiftyJSON
 import OAuthSwift
 import KeychainAccess
 
-enum UserResults {
-    case Success([User])
-    case Failure(ErrorType)
-}
-
 struct Networking {
     
     private let key: String = "fabf2f35c07dd3cc26612bf4c91a235e"
@@ -39,6 +34,7 @@ struct Networking {
             responseType: "code"
         )
         
+        // Open Soundcloud Connect with Safari view controller
         oauthswift.authorize_url_handler = SafariURLHandler(viewController: viewcontroller)
         
         let state: String = generateStateWithLength(20) as String
@@ -53,9 +49,7 @@ struct Networking {
         })
     }
     
-    // MARK: Requests
-    
-    // User
+    // MARK: User
     
     func getUser(completionHandler: (JSON?, NSError?) -> ()) {
         requestUser(completionHandler)
@@ -78,11 +72,9 @@ struct Networking {
                 }
             }
         }
-        
-
     }
     
-    // Playlist
+    // MARK: Playlist
     
     func getPlaylist(completionHandler: (JSON?, NSError?) -> ()) {
         requestPlaylist(completionHandler)
@@ -103,6 +95,8 @@ struct Networking {
             }
         }
     }
+    
+    // MARK: Add playlist
     
     func addPlaylist(title: String, completionHandler: (success: Bool) -> ()) {
         createPlaylist(title, completionHandler: completionHandler)
@@ -138,9 +132,7 @@ struct Networking {
         }
     }
     
-
-    
-    // Search
+    // MARK: Search
     
     func searchTracks(query: String, completionHandler: (JSON?, NSError?) -> ()) {
         requestSearch(query, completionHandler: completionHandler)
@@ -174,15 +166,13 @@ struct Networking {
         }
     }
     
-    // Add track to playlist
-    
+    // MARK: Add track
     func addTrack(playlist: String, tracks: [String], completionHandler: (String?, NSError?) -> ()) {
         putTrackInPlaylist(playlist, tracks: tracks, completionHandler: completionHandler)
     }
     
     func putTrackInPlaylist(playlist: String, tracks: [String], completionHandler: (String?, NSError?) -> ()) {
         let token = keychain[keychainKey]
-    
         
         if let token = token {
             // Guessing at api, need to add token too
@@ -195,7 +185,7 @@ struct Networking {
                     "tracks": trackIdentifiers.map { ["id": "\($0)"] }
                 ],
                 "sharing": "public"
-            ]    
+            ]
             
             let endpoint: String = "https://api.soundcloud.com/me/playlists/\(playlist)"
             Alamofire.request(.PUT, endpoint, parameters: parameters) .responseJSON { response in
@@ -206,18 +196,17 @@ struct Networking {
                 case .Failure(let error):
                     completionHandler(nil, error)
                 }
-                }
             }
+        }
     }
     
+    // MARK: Remove track
     func removeTrack(playlist: String, tracks: [String], completionHandler: (String?, NSError?) -> ()) {
         removeTrackFromPlaylist(playlist, tracks: tracks, completionHandler: completionHandler)
     }
     
-    
     func removeTrackFromPlaylist(playlist: String, tracks: [String], completionHandler: (String?, NSError?) ->()) {
         let token = keychain[keychainKey]
-        
         
         if let token = token {
             
@@ -247,13 +236,12 @@ struct Networking {
                 }
             }
         }
-
     }
-    
 }
 
 extension String {
     func stringByAddingPercentEncodingForURLQueryParameter() -> String? {
+        // Encode spaces in query
         let allowedCharacters = NSCharacterSet.URLQueryAllowedCharacterSet()
         return stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)
     }

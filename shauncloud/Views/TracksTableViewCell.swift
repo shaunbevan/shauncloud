@@ -14,7 +14,6 @@ class TracksTableViewCell: UITableViewCell {
     @IBOutlet weak var trackLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
     
-    
     @IBOutlet weak var searchPlaylistTitleLabel: UILabel!
     @IBOutlet weak var searchPlaylistNumberLabel: UILabel!
     @IBOutlet weak var searchPlaylistImage: UIImageView!
@@ -33,7 +32,6 @@ class TracksTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
