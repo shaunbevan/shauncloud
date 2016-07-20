@@ -16,6 +16,10 @@ class TrackDetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UITextView!
     @IBOutlet weak var favoritesLabel: UILabel!
     
+    
+    let spinner: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+
+    
     var songLabelText: String?
     var networking = Networking()
     var index: Int?
@@ -25,15 +29,22 @@ class TrackDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()        
+        
+        self.spinner.color = UIColor.lightGrayColor()
+        self.spinner.frame = CGRectMake(0.0, 0.0, 10.0, 10.0)
+        self.spinner.center = self.view.center
+        self.view.addSubview(spinner)
+        self.spinner.bringSubviewToFront(self.view)
 
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.spinner.startAnimating()
+
         networking.getPlaylist() { responseObject, error in
-            
+            self.spinner.stopAnimating()
             if let json = responseObject {
                 let playlistIndex = Playlists.userPlaylists.playlistTitles.indexOf(self.songLabelText!)
 
@@ -73,11 +84,6 @@ class TrackDetailViewController: UIViewController {
     @IBAction func removeTrackFromPlaylist(sender: AnyObject) {
         // Remove track from playlist
         print("Before array: \(self.trackArray)")
-
-        
-
-
-        
         
         let alert = UIAlertController(title: "Are you sure?", message: "Delete track", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
