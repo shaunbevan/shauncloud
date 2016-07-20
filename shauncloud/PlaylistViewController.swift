@@ -21,9 +21,15 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     let spinner: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
 
-    
+    var refreshControl: UIRefreshControl!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(PlaylistViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.collectionView.addSubview(refreshControl) // not required when using UITableViewController
     
         self.spinner.color = UIColor.lightGrayColor()
         self.spinner.frame = CGRectMake(0.0, 0.0, 10.0, 10.0)
@@ -36,6 +42,14 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
         self.navigationController?.navigationBar.translucent = true
         
         collectionView.backgroundColor = UIColor.whiteColor()
+    }
+    
+    func refresh(sender:AnyObject) {
+        // Code to refresh table view
+        updatePlaylist()
+        self.collectionView.reloadData()
+        refreshControl.endRefreshing()
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -78,13 +92,11 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
                 if newArtURL == Playlists.userPlaylists.playlistArtURL {
                 } else {
                     Playlists.userPlaylists.playlistArtURL = newArtURL
-                    self.collectionView.reloadData()
                 }
                 
                 if newPlaylist == Playlists.userPlaylists.playlistTitles {
                 } else {
                     Playlists.userPlaylists.playlistTitles = newPlaylist
-                    self.collectionView.reloadData()
                 }
             }
         }

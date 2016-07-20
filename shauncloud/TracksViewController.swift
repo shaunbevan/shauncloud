@@ -25,9 +25,16 @@ class TracksViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var tracks = [String]()
     let cellIdentifier = "Cell"
     
+    var refreshControl: UIRefreshControl!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(PlaylistViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
         
         if let artURL = self.playlistArtURL {
             if let url = NSURL(string: artURL) {
@@ -40,10 +47,19 @@ class TracksViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    func refresh(sender:AnyObject) {
+        // Code to refresh table view
+        loadTracks()
+        self.tracks.removeAll(keepCapacity: false)
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tracks.removeAll(keepCapacity: false)
         loadTracks()
+        self.tracks.removeAll(keepCapacity: false)
     }
     
     
