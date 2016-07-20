@@ -1,4 +1,4 @@
-# shauncloud
+# shauncloud (0.1.0)
 A playlist tracker for all your Soundcloud needs.
 
 ## Dependencies
