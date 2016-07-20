@@ -13,6 +13,7 @@ class WebViewController: OAuthWebViewController {
     
     var targetURL : NSURL = NSURL()
     let webView : UIWebView = UIWebView()
+    let networking = Networking()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ class WebViewController: OAuthWebViewController {
         let req = NSURLRequest(URL: targetURL)
         self.webView.loadRequest(req)
     }
+
 }
 
 // MARK: delegate

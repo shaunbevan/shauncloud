@@ -7,24 +7,34 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
 
 class User {
     
-    var id: String?
+    static let currentUser = User()
+    let networking = Networking()
+    
     var username: String?
     var fullName: String?
+    var avatarURL: String?
     var description: String?
-    var trackCount: String?
-    var playlistCount: String?
+    var friends: String?
+    var playlistCount: Int?
+    var trackCount: Int?
     
-    required init(json: JSON){
-        self.id = json["id"].string
-        self.username = json["username"].string
-        self.fullName = json["full_name"].string
-        self.description = json["description"].string
-        self.trackCount = json["track_count"].string
-        self.playlistCount = json["playlist_count"].string
+    func updateUser(completionHandler: (success: Bool) -> ()){
+        networking.getUser() { responseObject, error in
+            if let json = responseObject {
+                User.currentUser.username = json["username"].stringValue
+                User.currentUser.playlistCount = json["playlist_count"].intValue
+                User.currentUser.trackCount = json["track_count"].intValue
+                User.currentUser.friends = json["followers_count"].stringValue
+                User.currentUser.avatarURL = json["avatar_url"].stringValue
+            }
+            completionHandler(success: true)
+        }
     }
+    
+  
+    
 }
