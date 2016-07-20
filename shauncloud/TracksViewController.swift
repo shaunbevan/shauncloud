@@ -33,7 +33,7 @@ class TracksViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(PlaylistViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(TracksViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
         
         if let artURL = self.playlistArtURL {

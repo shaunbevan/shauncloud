@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class PlaylistViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
+class PlaylistViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -47,19 +47,13 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
     func refresh(sender:AnyObject) {
         // Code to refresh table view
         updatePlaylist()
-        self.collectionView.reloadData()
-        refreshControl.endRefreshing()
-
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.navigationController?.navigationBar.tintColor = UIColor.lightGrayColor()
-        
-
         self.updatePlaylist()
-        
+       
     }
     
     func updatePlaylist(){
@@ -99,58 +93,10 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
                     Playlists.userPlaylists.playlistTitles = newPlaylist
                 }
             }
-        }
-    }
-        
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        
-//        let playlistIndex = Playlists.userPlaylists.playlistTitles.indexOf(Playlists.userPlaylists.playlistTitles[indexPath.row])
-//        
-//        let playlistIndexPath = NSIndexPath(forRow: playlistIndex!, inSection: 0)
-//        
-//        if let cell = self.collectionView.cellForItemAtIndexPath(playlistIndexPath) as? PlaylistCollectionViewCell {
-//            cell.titleLabel.text = Playlists.userPlaylists.playlistTitles[playlistIndexPath.row]
-//            
-//            if let url = NSURL(string: Playlists.userPlaylists.playlistArtURL[playlistIndexPath.row]){
-//                if let data = NSData(contentsOfURL: url) {
-//                    cell.updateWithImage(UIImage(data: data))
-//                } else {
-//                    cell.updateWithImage(UIImage(named: "download"))
-//                }
-//            }
-//        }
+            self.refreshControl.endRefreshing()
 
-        
-//        networking.getPlaylist() { responseObject, error in
-//            if let json = responseObject {
-//
-//                for index in 0..<json.count {
-//                    
-//                    let artURL = json[index]["artwork_url"].stringValue
-//                    let title = json[index]["title"].stringValue
-//                    Playlists.userPlaylists.playlistArtURL.append(artURL)
-//                    Playlists.userPlaylists.playlistTitles.append(title)
-//                    
-//                    let playlistIndex = Playlists.userPlaylists.playlistTitles.indexOf(title)
-//                    let playlistIndexPath = NSIndexPath(forRow: playlistIndex!, inSection: 0)
-//                    
-//                    if let cell = self.collectionView.cellForItemAtIndexPath(playlistIndexPath) as? PlaylistCollectionViewCell {
-//                        cell.titleLabel.text = Playlists.userPlaylists.playlistTitles[playlistIndexPath.row]
-//                        
-//                        if let url = NSURL(string: Playlists.userPlaylists.playlistArtURL[playlistIndexPath.row]){
-//                            if let data = NSData(contentsOfURL: url) {
-//                                cell.updateWithImage(UIImage(data: data))
-//                            } else {
-//                                cell.updateWithImage(UIImage(named: "download"))
-//                            }
-//                        }
-//                    }
-//
-//                }
-//                
-//            }
-//            
-//        }
+        }
+        self.collectionView.reloadData()
     }
     
     
@@ -190,6 +136,43 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         self.performSegueWithIdentifier("showTracks", sender: indexPath)
+        
+    }
+    
+    
+    @IBAction func addPlaylistButtonPressed(sender: AnyObject) {
+        
+        let alertController = UIAlertController(title: "Add Playlist", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+            alert -> Void in
+            let playlistName = alertController.textFields![0] as UITextField
+
+            if let name = playlistName.text {
+                self.networking.addPlaylist(name) { response in
+                    if response {
+                        Playlists.userPlaylists.updatePlaylist()
+                    } else {
+                        print("Error: Failed to add playlist")
+                    }
+                }
+            }
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter Playlist Name"
+        }
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
         
     }
     

@@ -30,7 +30,7 @@ struct Networking {
     private let keychainKey = "shauncloud"
     
     // MARK: Authenicate
-    func requestAuthenication(){
+    func requestAuthenication(viewcontroller: UIViewController){
         let oauthswift = OAuth2Swift(
             consumerKey: key,
             consumerSecret: secret,
@@ -39,7 +39,7 @@ struct Networking {
             responseType: "code"
         )
         
-        oauthswift.authorize_url_handler = WebViewController()
+        oauthswift.authorize_url_handler = SafariURLHandler(viewController: viewcontroller)
         
         let state: String = generateStateWithLength(20) as String
         
@@ -99,6 +99,40 @@ struct Networking {
                     completionHandler(JSON(value), nil)
                 case .Failure(let error):
                     completionHandler(nil, error)
+                }
+            }
+        }
+    }
+    
+    func addPlaylist(title: String, completionHandler: (success: Bool) -> ()) {
+        createPlaylist(title, completionHandler: completionHandler)
+    }
+    
+    
+    func createPlaylist(title: String, completionHandler: (success: Bool) -> ()) {
+        let token = keychain[keychainKey]
+        
+        if let token = token {
+            
+            let trackIdentifiers = []
+            
+            let parameters: [String: AnyObject] = [
+                "oauth_token": token,
+                "playlist": [
+                    "title": title,
+                    "sharing": "public",
+                    "tracks": trackIdentifiers.map { ["id": "\($0)"] }
+                ]
+            ]
+            let endpoint: String = "https://api.soundcloud.com/playlists"
+            Alamofire.request(.POST, endpoint, parameters: parameters) .responseJSON { response in
+                switch response.result {
+                case .Success(let value):
+                    print(value)
+                    completionHandler(success: true)
+                case .Failure(let error):
+                    print(error)
+                    completionHandler(success: false)
                 }
             }
         }
@@ -216,32 +250,6 @@ struct Networking {
 
     }
     
-//    func requestUserPlaylist(){
-//        let token = keychain[keychainKey]
-//        print(token)
-//        if let token = token {
-//            let playlistEndpoint: String = "https://api.soundcloud.com/me/playlists?oauth_token=\(token)"
-//            
-//            Alamofire.request(.GET, playlistEndpoint)
-//                .responseJSON { response in
-//                    guard response.result.error == nil else {
-//                        // Error!
-//                        print("Error: \(response.result.error!)")
-//                        return
-//                    }
-//                    
-//                    if let value = response.result.value {
-//                        let playlist = JSON(value)
-//                        let tracks = playlist[0, "tracks"].count
-//                        let title = playlist[0, "title"].string
-//                        print(tracks, title)
-//                    } else {
-//                        print("Error parsing playlist")
-//                    }
-//            }
-//        }
-//        
-//    }
 }
 
 extension String {

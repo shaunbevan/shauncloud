@@ -10,7 +10,7 @@
         <!--Profile-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="shauncloud" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ProfileViewController" customModule="shauncloud" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -20,14 +20,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjc-cv-vt1">
-                                <rect key="frame" x="118" y="481" width="139" height="129"/>
+                                <rect key="frame" x="118" y="579" width="139" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="139" id="eWZ-g5-6HK"/>
-                                    <constraint firstAttribute="height" constant="129" id="raI-fL-5DW"/>
+                                    <constraint firstAttribute="height" constant="31" id="raI-fL-5DW"/>
                                 </constraints>
                                 <state key="normal" title="Sign out"/>
                                 <connections>
-                                    <action selector="signInPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="POe-Wl-9B4"/>
+                                    <action selector="signOutPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tLi-BR-j3H"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soundcloud-large" translatesAutoresizingMaskIntoConstraints="NO" id="rZ9-at-zXo">
@@ -363,7 +363,13 @@
                             <constraint firstItem="1qL-px-kDl" firstAttribute="leading" secondItem="eNM-0N-LT9" secondAttribute="leadingMargin" constant="-20" id="mMa-fK-oza"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Playlists" id="2VB-E1-nfe"/>
+                    <navigationItem key="navigationItem" title="Playlists" id="2VB-E1-nfe">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="nXT-b8-3Pd">
+                            <connections>
+                                <action selector="addPlaylistButtonPressed:" destination="q3N-No-gA3" id="GFK-fV-J01"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="1qL-px-kDl" id="QpB-a5-Blm"/>
                         <segue destination="LUr-un-Hq8" kind="push" identifier="showTracks" id="XhS-AO-nMW"/>
@@ -720,7 +726,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="download" width="225" height="225"/>
+        <image name="download" width="1200" height="1200"/>
         <image name="friends" width="50" height="50"/>
         <image name="playlist" width="30" height="30"/>
         <image name="profile" width="30" height="30"/>
