@@ -151,7 +151,6 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
             if let name = playlistName.text {
                 self.networking.addPlaylist(name) { response in
                     if response {
-                        print("Playlist added")
                         Playlists.userPlaylists.updatePlaylist()
                     } else {
                         print("Error: Failed to add playlist")

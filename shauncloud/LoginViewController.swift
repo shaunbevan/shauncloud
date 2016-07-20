@@ -42,7 +42,6 @@ class LoginViewController: UIViewController {
         Playlists.userPlaylists.updatePlaylist()
         User.currentUser.updateUser() { success in
             if success {
-                print("Success")
                 self.spinner.stopAnimating()
                 self.updateProfile()
             } else {

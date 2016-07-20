@@ -61,8 +61,6 @@ class TrackDetailViewController: UIViewController {
                     let tracks = json[playlistIndex!]["tracks", index]["id"].stringValue
                     self.trackArray.append(tracks)
                 }
-                print(self.trackID)
-                print(selectedTrack)
                 self.playlistID = playlist
                 self.trackID = selectedTrack
                 self.artistLabel.text = artistName

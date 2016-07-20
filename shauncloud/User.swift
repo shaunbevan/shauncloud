@@ -31,7 +31,6 @@ class User {
                 User.currentUser.friends = json["followers_count"].stringValue
                 User.currentUser.avatarURL = json["avatar_url"].stringValue
             }
-            print("Update User complete")
             completionHandler(success: true)
         }
     }
