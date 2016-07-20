@@ -28,6 +28,9 @@ class LoadViewController: UIViewController {
         UINavigationBar.appearance().titleTextAttributes = [ NSFontAttributeName: customFont!]
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: customFont!], forState: UIControlState.Normal)
         
+        UITabBar.appearance().tintColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
+
+        
 //        let playlist: Array = ["1", "2", "3", "4", "5"]
 //        let tracks: Array = [["123", "456"], ["789", "012"], ["345", "678"], ["901", "234"], ["567", "890"]]
 //

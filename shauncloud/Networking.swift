@@ -160,7 +160,8 @@ struct Networking {
                 "oauth_token": token,
                 "playlist": [
                     "tracks": trackIdentifiers.map { ["id": "\($0)"] }
-                ]
+                ],
+                "sharing": "public"
             ]    
             
             let endpoint: String = "https://api.soundcloud.com/me/playlists/\(playlist)"
@@ -198,7 +199,8 @@ struct Networking {
                 "oauth_token": token,
                 "playlist": [
                     "tracks": trackIdentifiers.map { ["id": "\($0)"] }
-                ]
+                ],
+                "sharing": "public"
             ]
             
             let endpoint: String = "https://api.soundcloud.com/me/playlists/\(playlist)"

@@ -13,7 +13,8 @@ class TrackDetailViewController: UIViewController {
     @IBOutlet weak var trackImageView: UIImageView!
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var songLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UITextView!
+    @IBOutlet weak var favoritesLabel: UILabel!
     
     var songLabelText: String?
     var networking = Networking()
@@ -42,6 +43,7 @@ class TrackDetailViewController: UIViewController {
                 let artURL = json[playlistIndex!]["tracks", self.index!]["artwork_url"].stringValue
                 let playlist = json[playlistIndex!]["id"].stringValue
                 let selectedTrack = json[playlistIndex!]["tracks", self.index!]["id"].stringValue
+                let favorites = json[playlistIndex!]["tracks", self.index!]["favoritings_count"].stringValue
 
                 let trackCount = json[playlistIndex!]["tracks"].count
                 
@@ -55,6 +57,7 @@ class TrackDetailViewController: UIViewController {
                 self.artistLabel.text = artistName
                 self.songLabel.text = songName
                 self.descriptionLabel.text = description
+                self.favoritesLabel.text = favorites
                 
                 if let url = NSURL(string: artURL) {
                     if let data = NSData(contentsOfURL: url) {
