@@ -51,6 +51,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.resultSearchController?.searchBar.delegate = self
         self.tableView.tableHeaderView = self.resultSearchController.searchBar
         
+        
+        self.definesPresentationContext = true
         self.tableView.reloadData()
 
         // Do any additional setup after loading the view.
@@ -72,10 +74,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -129,9 +127,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("addTrack", sender: indexPath)
     }
-    
+        
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        self.resultSearchController.active = false
 
         if segue.identifier == "addTrack" {
             let index = sender?.row
@@ -146,7 +143,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        self.resultSearchController.searchBar.resignFirstResponder()
         
         let searchText = self.resultSearchController.searchBar.text
         
@@ -178,7 +174,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        print("Search cancelled")
+        self.resultSearchController.searchBar.resignFirstResponder()
+
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
@@ -198,7 +195,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func cleanUp() {
         // Clean up arrays used to hold data
-        print("Clean up")
         self.filteredArray.removeAll(keepCapacity: false)
         self.filteredArrayImages.removeAll(keepCapacity: false)
         self.trackID.removeAll(keepCapacity: false)

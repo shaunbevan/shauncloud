@@ -65,11 +65,9 @@ class TracksViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     private func loadTracks() {
-        print("Loading...")
         
         // Fetch tracks from playlist endpoint
         networking.getPlaylist() { responseObject, error in
-            print("Done")
             if let json = responseObject {
                 if let selectedPlaylist = self.playlistID {
                     let playlistIndex = Playlists.userPlaylists.playlistIDs.indexOf(selectedPlaylist)

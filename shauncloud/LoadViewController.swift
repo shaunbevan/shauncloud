@@ -22,7 +22,6 @@ class LoadViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Keychain: \(keychain[keychainKey])")
         
         let customFont = UIFont(name: "HelveticaNeue-Light", size: 17.0)
         UINavigationBar.appearance().titleTextAttributes = [ NSFontAttributeName: customFont!]

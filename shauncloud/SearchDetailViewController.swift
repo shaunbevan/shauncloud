@@ -19,8 +19,6 @@ class SearchDetailViewController: UIViewController, UITableViewDelegate, UITable
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Track ID: \(trackID!)")
-
         // Do any additional setup after loading the view.
     }
     

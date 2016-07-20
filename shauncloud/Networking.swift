@@ -116,7 +116,6 @@ struct Networking {
         let token = keychain[keychainKey]
         
         let searchQuery = query.stringByAddingPercentEncodingForURLQueryParameter()
-        print(searchQuery)
         
         if let token = token {
             

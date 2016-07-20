@@ -183,6 +183,7 @@
                             <constraint firstAttribute="trailing" secondItem="KCM-cG-Q8n" secondAttribute="trailing" id="mTb-JL-fLC"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" systemItem="search" id="t26-V0-jZB"/>
                     <navigationItem key="navigationItem" title="Search" id="Spa-RK-FP1"/>
                     <connections>
                         <outlet property="tableView" destination="KCM-cG-Q8n" id="4wB-W6-Dbq"/>
@@ -671,13 +672,13 @@
                     </tabBar>
                     <connections>
                         <segue destination="szg-47-ALL" kind="relationship" relationship="viewControllers" id="YOy-8k-s9n"/>
-                        <segue destination="MQK-Vk-lH6" kind="relationship" relationship="viewControllers" id="xz4-95-NH3"/>
+                        <segue destination="MQK-Vk-lH6" kind="relationship" relationship="viewControllers" id="dAg-tX-PUN"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="UPo-cg-3Xt"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWJ-1O-PdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="619.73333333333335" y="1094.3466666666664"/>
+            <point key="canvasLocation" x="581" y="1094"/>
         </scene>
         <!--Playlist-->
         <scene sceneID="oRh-k4-SO2">

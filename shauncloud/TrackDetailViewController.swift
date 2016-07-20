@@ -83,13 +83,10 @@ class TrackDetailViewController: UIViewController {
 
     @IBAction func removeTrackFromPlaylist(sender: AnyObject) {
         // Remove track from playlist
-        print("Before array: \(self.trackArray)")
         
         let alert = UIAlertController(title: "Are you sure?", message: "Delete track", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) in
-            print("Deleting track: \(self.trackID)")
-            print("Playlist: \(self.playlistID)")
             
             if let track = self.trackID {
                 let deleteTrackIndex = self.trackArray.indexOf(track)
@@ -99,7 +96,6 @@ class TrackDetailViewController: UIViewController {
                 }
             }
             
-            print("After array: \(self.trackArray)")
 
             
             self.networking.removeTrack(self.playlistID!, tracks: self.trackArray) {response, error in
