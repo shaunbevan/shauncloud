@@ -75,15 +75,7 @@ class TrackDetailViewController: UIViewController {
         print("Before array: \(self.trackArray)")
 
         
-        if let track = self.trackID {
-            let deleteTrackIndex = self.trackArray.indexOf(track)
-            
-            if let index = deleteTrackIndex {
-                self.trackArray.removeAtIndex(index)
-            }
-        }
-        
-        print("After array: \(self.trackArray)")
+
 
         
         
@@ -92,6 +84,17 @@ class TrackDetailViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) in
             print("Deleting track: \(self.trackID)")
             print("Playlist: \(self.playlistID)")
+            
+            if let track = self.trackID {
+                let deleteTrackIndex = self.trackArray.indexOf(track)
+                
+                if let index = deleteTrackIndex {
+                    self.trackArray.removeAtIndex(index)
+                }
+            }
+            
+            print("After array: \(self.trackArray)")
+
             
             self.networking.removeTrack(self.playlistID!, tracks: self.trackArray) {response, error in
             

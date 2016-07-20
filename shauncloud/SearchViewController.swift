@@ -71,6 +71,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -168,21 +172,21 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         self.trackID.append(id)
                     }
                     self.tableView.reloadData()
-                    
                 }
             }
         }
-        
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        print("search cancel clicked")
+        print("Search cancelled")
     }
     
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        cleanUp()
+    }
+  
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         self.notFoundLabel.hidden = true
-        self.filteredArray.removeAll(keepCapacity: false)
-        
         let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)
         
         let array = (self.array as NSArray).filteredArrayUsingPredicate(searchPredicate)
@@ -190,6 +194,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.filteredArray = array as! [String]
         
         self.tableView.reloadData()
+    }
+    
+    func cleanUp() {
+        // Clean up arrays used to hold data
+        print("Clean up")
+        self.filteredArray.removeAll(keepCapacity: false)
+        self.filteredArrayImages.removeAll(keepCapacity: false)
+        self.trackID.removeAll(keepCapacity: false)
     }
     
 

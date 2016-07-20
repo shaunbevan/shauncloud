@@ -58,6 +58,7 @@ class TracksViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        cleanup()
         loadTracks()
         self.tracks.removeAll(keepCapacity: false)
     }
@@ -65,6 +66,7 @@ class TracksViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private func loadTracks() {
         print("Loading...")
+        
         // Fetch tracks from playlist endpoint
         networking.getPlaylist() { responseObject, error in
             print("Done")
@@ -140,6 +142,11 @@ class TracksViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let vc = segue.destinationViewController as! TrackDetailViewController
         vc.index = sender?.row
         vc.songLabelText = self.playlistTitle.title!
+    }
+    
+    func cleanup() {
+        self.tracks.removeAll(keepCapacity: false)
+        self.trackArtURLs.removeAll(keepCapacity: false)
     }
     
 }
