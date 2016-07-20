@@ -12,7 +12,7 @@
 		470141961D395565000E2EF4 /* shauncloud.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 470141941D395565000E2EF4 /* shauncloud.xcdatamodeld */; };
 		470141981D395565000E2EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 470141971D395565000E2EF4 /* Assets.xcassets */; };
 		4701419B1D395565000E2EF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 470141991D395565000E2EF4 /* LaunchScreen.storyboard */; };
-		470141A31D395629000E2EF4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470141A21D395629000E2EF4 /* LoginViewController.swift */; };
+		470141A31D395629000E2EF4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470141A21D395629000E2EF4 /* ProfileViewController.swift */; };
 		472766BF1D3BE0D100FBE48B /* TracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472766BE1D3BE0D100FBE48B /* TracksViewController.swift */; };
 		472766C11D3BE0EF00FBE48B /* TracksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472766C01D3BE0EF00FBE48B /* TracksTableViewCell.swift */; };
 		472766C31D3BFCDC00FBE48B /* Playlists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472766C21D3BFCDC00FBE48B /* Playlists.swift */; };
@@ -37,7 +37,7 @@
 		470141971D395565000E2EF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4701419A1D395565000E2EF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4701419C1D395565000E2EF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		470141A21D395629000E2EF4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = /Users/dxmzan/Developer/shauncloud/shauncloud/LoginViewController.swift; sourceTree = "<absolute>"; };
+		470141A21D395629000E2EF4 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = /Users/dxmzan/Developer/shauncloud/shauncloud/ProfileViewController.swift; sourceTree = "<absolute>"; };
 		472766BE1D3BE0D100FBE48B /* TracksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksViewController.swift; sourceTree = "<group>"; };
 		472766C01D3BE0EF00FBE48B /* TracksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksTableViewCell.swift; sourceTree = "<group>"; };
 		472766C21D3BFCDC00FBE48B /* Playlists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlists.swift; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 		470141A71D395646000E2EF4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				470141A21D395629000E2EF4 /* LoginViewController.swift */,
+				470141A21D395629000E2EF4 /* ProfileViewController.swift */,
 				476C02711D39821B003698E6 /* WebViewController.swift */,
 				476C02751D39DB2A003698E6 /* PlaylistViewController.swift */,
 				472766BE1D3BE0D100FBE48B /* TracksViewController.swift */,
@@ -293,7 +293,7 @@
 				47CB260F1D3D5A140029B777 /* SearchDetailViewController.swift in Sources */,
 				472766C11D3BE0EF00FBE48B /* TracksTableViewCell.swift in Sources */,
 				47FC990B1D3A97800003667D /* PlaylistCollectionViewCell.swift in Sources */,
-				470141A31D395629000E2EF4 /* LoginViewController.swift in Sources */,
+				470141A31D395629000E2EF4 /* ProfileViewController.swift in Sources */,
 				470141961D395565000E2EF4 /* shauncloud.xcdatamodeld in Sources */,
 				47FC990F1D3A9D940003667D /* Networking.swift in Sources */,
 				472766C51D3C8DDE00FBE48B /* TrackDetailViewController.swift in Sources */,

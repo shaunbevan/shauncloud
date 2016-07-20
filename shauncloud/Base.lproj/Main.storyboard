@@ -10,7 +10,7 @@
         <!--Profile-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="shauncloud" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ProfileViewController" customModule="shauncloud" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -726,7 +726,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="download" width="225" height="225"/>
+        <image name="download" width="1200" height="1200"/>
         <image name="friends" width="50" height="50"/>
         <image name="playlist" width="30" height="30"/>
         <image name="profile" width="30" height="30"/>

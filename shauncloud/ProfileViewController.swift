@@ -12,9 +12,11 @@ import Alamofire
 import SwiftyJSON
 import KeychainAccess
 
-class LoginViewController: UIViewController {
+class ProfileViewController: UIViewController {
     
     var networking = Networking()
+    
+    let keychain = Keychain()
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var friendsLabel: UILabel!
@@ -70,6 +72,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func signOutPressed(sender: AnyObject) {
         networking.requestAuthenication(self)
+
     }
     
     override func didReceiveMemoryWarning() {
