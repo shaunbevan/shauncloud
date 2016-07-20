@@ -16,7 +16,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     func updateWithImage(image:UIImage?) {
-
         if let imageToDisplay = image {
             spinner.stopAnimating()
             playlistImage.image = imageToDisplay
