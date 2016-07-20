@@ -47,19 +47,13 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
     func refresh(sender:AnyObject) {
         // Code to refresh table view
         updatePlaylist()
-        self.collectionView.reloadData()
-        refreshControl.endRefreshing()
-
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.navigationController?.navigationBar.tintColor = UIColor.lightGrayColor()
-        
-
         self.updatePlaylist()
-        
+       
     }
     
     func updatePlaylist(){
@@ -99,58 +93,10 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
                     Playlists.userPlaylists.playlistTitles = newPlaylist
                 }
             }
-        }
-    }
-        
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        
-//        let playlistIndex = Playlists.userPlaylists.playlistTitles.indexOf(Playlists.userPlaylists.playlistTitles[indexPath.row])
-//        
-//        let playlistIndexPath = NSIndexPath(forRow: playlistIndex!, inSection: 0)
-//        
-//        if let cell = self.collectionView.cellForItemAtIndexPath(playlistIndexPath) as? PlaylistCollectionViewCell {
-//            cell.titleLabel.text = Playlists.userPlaylists.playlistTitles[playlistIndexPath.row]
-//            
-//            if let url = NSURL(string: Playlists.userPlaylists.playlistArtURL[playlistIndexPath.row]){
-//                if let data = NSData(contentsOfURL: url) {
-//                    cell.updateWithImage(UIImage(data: data))
-//                } else {
-//                    cell.updateWithImage(UIImage(named: "download"))
-//                }
-//            }
-//        }
+            self.refreshControl.endRefreshing()
 
-        
-//        networking.getPlaylist() { responseObject, error in
-//            if let json = responseObject {
-//
-//                for index in 0..<json.count {
-//                    
-//                    let artURL = json[index]["artwork_url"].stringValue
-//                    let title = json[index]["title"].stringValue
-//                    Playlists.userPlaylists.playlistArtURL.append(artURL)
-//                    Playlists.userPlaylists.playlistTitles.append(title)
-//                    
-//                    let playlistIndex = Playlists.userPlaylists.playlistTitles.indexOf(title)
-//                    let playlistIndexPath = NSIndexPath(forRow: playlistIndex!, inSection: 0)
-//                    
-//                    if let cell = self.collectionView.cellForItemAtIndexPath(playlistIndexPath) as? PlaylistCollectionViewCell {
-//                        cell.titleLabel.text = Playlists.userPlaylists.playlistTitles[playlistIndexPath.row]
-//                        
-//                        if let url = NSURL(string: Playlists.userPlaylists.playlistArtURL[playlistIndexPath.row]){
-//                            if let data = NSData(contentsOfURL: url) {
-//                                cell.updateWithImage(UIImage(data: data))
-//                            } else {
-//                                cell.updateWithImage(UIImage(named: "download"))
-//                            }
-//                        }
-//                    }
-//
-//                }
-//                
-//            }
-//            
-//        }
+        }
+        self.collectionView.reloadData()
     }
     
     

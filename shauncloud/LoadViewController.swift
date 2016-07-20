@@ -28,32 +28,6 @@ class LoadViewController: UIViewController {
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: customFont!], forState: UIControlState.Normal)
         
         UITabBar.appearance().tintColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
-
-        
-//        let playlist: Array = ["1", "2", "3", "4", "5"]
-//        let tracks: Array = [["123", "456"], ["789", "012"], ["345", "678"], ["901", "234"], ["567", "890"]]
-//
-//        
-//        for (index, element) in playlist.enumerate()
-//        {
-//            Playlists.userPlaylists.playlists[element] = tracks[index]
-//        }
-//        
-//        print(Playlists.userPlaylists.playlists)
-        
-        //print("Playlist 1: \(Playlists.userPlaylists.playlists["1"])")
-        
-
-        // Playlist Playlists.userPlaylists.playlists[playlistID]
-        // Track: Playlists.userPlaylists.playlists[playlistID, index]
-        
-        /*
-         json = ["playlist": [
-        
-         
- 
- 
-        */
     }
     
     
@@ -76,12 +50,11 @@ class LoadViewController: UIViewController {
             // Initial load of user data
             networking.getUser() { responseObject, error in
                 if let json = responseObject {
-                    User.currentUser.username = json["username"].string
+                    User.currentUser.username = json["username"].stringValue
                     User.currentUser.playlistCount = json["playlist_count"].intValue
                     User.currentUser.trackCount = json["track_count"].intValue
                     User.currentUser.friends = json["followers_count"].stringValue
                     User.currentUser.avatarURL = json["avatar_url"].stringValue
-                    
                 }
             }
             
@@ -143,7 +116,7 @@ class LoadViewController: UIViewController {
     }
 
     @IBAction func logInButtonPressed(sender: AnyObject) {
-        networking.requestAuthenication()
+        networking.requestAuthenication(self)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

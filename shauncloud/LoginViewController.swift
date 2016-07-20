@@ -15,7 +15,6 @@ import KeychainAccess
 class LoginViewController: UIViewController {
     
     var networking = Networking()
-    private let keychain = Keychain(service: "com.shaunbevan.shauncloud")
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var friendsLabel: UILabel!
@@ -24,6 +23,19 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+    
+    func refresh(sender:AnyObject) {
+        // Code to refresh table view
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Playlists.userPlaylists.updatePlaylist()
+        User.currentUser.updateUser()
+        
         self.namesLabel.text = User.currentUser.username
         self.friendsLabel.text = User.currentUser.friends
         
@@ -38,41 +50,7 @@ class LoginViewController: UIViewController {
                 }
             }
         }
-        
-//        // Initial load of user data
-//        networking.getUser() { responseObject, error in
-//            if let json = responseObject {
-//                User.currentUser.username = json["username"].string
-//                User.currentUser.playlistCount = json["playlist_count"].intValue
-//            }
-//        }
-//
-//        // Initial load of playlist data
-//        networking.getPlaylist() { responseObject, error in
-//            if let json = responseObject {
-//                self.spinner.stopAnimating()
-//                for index in 0..<json.count {
-//
-//                    let artURL = json[index]["artwork_url"].stringValue
-//                    let title = json[index]["title"].stringValue
-//                    let tracks = json[index]["tracks"].count
-//
-//                    Playlists.userPlaylists.playlistArtURL.append(artURL)
-//                    Playlists.userPlaylists.playlistTitles.append(title)
-//                    Playlists.userPlaylists.playlistTrackCount.append(tracks)
-//                }
-//            }
-//            else {
-//                self.spinner.startAnimating()
-//            }
-//        }
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        //networking.requestAuthenication()
-    }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -80,16 +58,7 @@ class LoginViewController: UIViewController {
     }
 
     
-    @IBAction func signInPressed(sender: AnyObject) {
-//        do {
-//            try keychain.remove("shauncloud")
-//            print("Key removed")
-//        } catch let error {
-//            print("error: \(error)")
-//        }
-        //networking.putTrackInPlaylist("", tracks: [""])
-        
+    @IBAction func signOutPressed(sender: AnyObject) {
+        networking.requestAuthenication(self)
     }
-    
-
 }

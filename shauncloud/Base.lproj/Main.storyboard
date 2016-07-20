@@ -20,14 +20,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjc-cv-vt1">
-                                <rect key="frame" x="118" y="481" width="139" height="129"/>
+                                <rect key="frame" x="118" y="579" width="139" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="139" id="eWZ-g5-6HK"/>
-                                    <constraint firstAttribute="height" constant="129" id="raI-fL-5DW"/>
+                                    <constraint firstAttribute="height" constant="31" id="raI-fL-5DW"/>
                                 </constraints>
                                 <state key="normal" title="Sign out"/>
                                 <connections>
-                                    <action selector="signInPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="POe-Wl-9B4"/>
+                                    <action selector="signOutPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tLi-BR-j3H"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soundcloud-large" translatesAutoresizingMaskIntoConstraints="NO" id="rZ9-at-zXo">

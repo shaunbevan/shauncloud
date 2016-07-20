@@ -12,6 +12,7 @@ import SwiftyJSON
 class User {
     
     static let currentUser = User()
+    let networking = Networking()
     
     var username: String?
     var fullName: String?
@@ -20,5 +21,21 @@ class User {
     var friends: String?
     var playlistCount: Int?
     var trackCount: Int?
+    
+    func updateUser() {
+        networking.getUser() { responseObject, error in
+    
+            
+            if let json = responseObject {
+                User.currentUser.username = json["username"].stringValue
+                User.currentUser.playlistCount = json["playlist_count"].intValue
+                User.currentUser.trackCount = json["track_count"].intValue
+                User.currentUser.friends = json["followers_count"].stringValue
+                User.currentUser.avatarURL = json["avatar_url"].stringValue
+            }
+        }
+    }
+    
+  
     
 }
