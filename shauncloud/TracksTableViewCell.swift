@@ -12,6 +12,16 @@ class TracksTableViewCell: UITableViewCell {
 
     @IBOutlet weak var playlistImage: UIImageView!
     @IBOutlet weak var trackLabel: UILabel!
+    @IBOutlet weak var numberLabel: UILabel!
+    
+    
+    @IBOutlet weak var searchPlaylistTitleLabel: UILabel!
+    @IBOutlet weak var searchPlaylistNumberLabel: UILabel!
+    @IBOutlet weak var searchPlaylistImage: UIImageView!
+    
+    @IBOutlet weak var searchCellTitleLabel: UILabel!
+    @IBOutlet weak var searchCellNumberLabel: UILabel!
+    @IBOutlet weak var searchCellImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

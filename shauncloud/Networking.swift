@@ -31,7 +31,6 @@ struct Networking {
     
     // MARK: Authenicate
     func requestAuthenication(){
-        
         let oauthswift = OAuth2Swift(
             consumerKey: key,
             consumerSecret: secret,
@@ -65,12 +64,12 @@ struct Networking {
     func requestUser(completionHandler: (JSON?, NSError?) -> ()) {
         
         let token = keychain[keychainKey]
-        print(token)
         
         if let token = token {
-            let userEndpoint: String = "https://api.soundcloud.com/me?oauth_token=\(token)"
+            let parameters: [String: AnyObject] = ["oauth_token": token]
+            let userEndpoint: String = "https://api.soundcloud.com/me"
             
-            Alamofire.request(.GET, userEndpoint) .responseJSON { response in
+            Alamofire.request(.GET, userEndpoint, parameters: parameters) .responseJSON { response in
                 switch response.result {
                 case .Success(let value):
                     completionHandler(JSON(value), nil)
@@ -92,8 +91,9 @@ struct Networking {
     func requestPlaylist(completionHandler: (JSON?, NSError?) ->()) {
         let token = keychain[keychainKey]
         if let token = token {
-            let playlistEndpoint: String = "https://api.soundcloud.com/me/playlists?oauth_token=\(token)"
-            Alamofire.request(.GET, playlistEndpoint) .responseJSON { response in
+            let parameters: [String: AnyObject] = ["oauth_token": token]
+            let playlistEndpoint: String = "https://api.soundcloud.com/me/playlists"
+            Alamofire.request(.GET, playlistEndpoint, parameters: parameters) .responseJSON { response in
                 switch response.result {
                 case .Success(let value):
                     completionHandler(JSON(value), nil)
@@ -104,47 +104,116 @@ struct Networking {
         }
     }
     
-    func deleteTrack(completionHandler: (JSON?, NSError?) -> ()) {
+
+    
+    // Search
+    
+    func searchTracks(query: String, completionHandler: (JSON?, NSError?) -> ()) {
+        requestSearch(query, completionHandler: completionHandler)
+    }
+    
+    func requestSearch(query: String, completionHandler: (JSON?, NSError?) -> ()) {
         let token = keychain[keychainKey]
         
+        let searchQuery = query.stringByAddingPercentEncodingForURLQueryParameter()
+        
         if let token = token {
-            let trackid = "230726323"
-            // https://api.soundcloud.com/me/tracks/230726323?oauth_token=1-254567-4438611-33d45464b0610c4
-            let track: String = "https://api.soundcloud.com/me/tracks/\(trackid)?oauth_token=\(token)"
-            Alamofire.request(.DELETE, track) .responseJSON { response in
-                switch response.result {
-                case .Success(let value):
-                    completionHandler(JSON(value), nil)
-                case .Failure(let error):
-                    completionHandler(nil, error)
             
+            if let queryString = searchQuery {
+                let parameters: [String: AnyObject] = [
+                    "oauth_token": token,
+                    "q": queryString
+                ]
+            
+                let endpoint: String = "https://api.soundcloud.com/tracks"
+
+                Alamofire.request(.GET, endpoint, parameters: parameters) .responseJSON { response in
+                    switch response.result {
+                    case .Success(let value):
+                        completionHandler(JSON(value), nil)
+                    case .Failure(let error):
+                        completionHandler(nil, error)
+                    }
                 }
             }
+        
         }
     }
     
-    func searchTracks(params: String, completionHandler: (JSON?, NSError?) -> ()) {
-        requestSearch(params, completionHandler: completionHandler)
+    // Add track to playlist
+    
+    func addTrack(playlist: String, tracks: [String], completionHandler: (String?, NSError?) -> ()) {
+        putTrackInPlaylist(playlist, tracks: tracks, completionHandler: completionHandler)
     }
     
-    func requestSearch(params: String, completionHandler: (JSON?, NSError?) -> ()) {
+    func putTrackInPlaylist(playlist: String, tracks: [String], completionHandler: (String?, NSError?) -> ()) {
         let token = keychain[keychainKey]
-        
-        let searchQuery = params.removeWhitespace()
+    
         
         if let token = token {
-            // Static string, need to change
-            let query: String = "https://api.soundcloud.com/me/tracks?oauth_token=\(token)&q=\(searchQuery)"
-            Alamofire.request(.GET, query) .responseJSON { response in
+            // Guessing at api, need to add token too
+            
+            let trackIdentifiers = tracks
+            
+            let parameters: [String: AnyObject] = [
+                "oauth_token": token,
+                "playlist": [
+                    "tracks": trackIdentifiers.map { ["id": "\($0)"] }
+                ],
+                "sharing": "public"
+            ]    
+            
+            let endpoint: String = "https://api.soundcloud.com/me/playlists/\(playlist)"
+            Alamofire.request(.PUT, endpoint, parameters: parameters) .responseJSON { response in
+                print("Status Code: \(response.response!.statusCode)")
                 switch response.result {
                 case .Success(let value):
-                    completionHandler(JSON(value), nil)
+                    completionHandler(value as? String, nil)
+                case .Failure(let error):
+                    completionHandler(nil, error)
+                }
+                }
+            }
+    }
+    
+    func removeTrack(playlist: String, tracks: [String], completionHandler: (String?, NSError?) -> ()) {
+        removeTrackFromPlaylist(playlist, tracks: tracks, completionHandler: completionHandler)
+    }
+    
+    
+    func removeTrackFromPlaylist(playlist: String, tracks: [String], completionHandler: (String?, NSError?) ->()) {
+        let token = keychain[keychainKey]
+        
+        
+        if let token = token {
+            
+            var trackIdentifiers = tracks
+            
+            // If the last track in the playlist is deleted, remove track by setting id to 0
+            if trackIdentifiers.isEmpty {
+                trackIdentifiers.append("0")
+            }
+            
+            let parameters: [String: AnyObject] = [
+                "oauth_token": token,
+                "playlist": [
+                    "tracks": trackIdentifiers.map { ["id": "\($0)"] }
+                ],
+                "sharing": "public"
+            ]
+            
+            let endpoint: String = "https://api.soundcloud.com/me/playlists/\(playlist)"
+            Alamofire.request(.PUT, endpoint, parameters: parameters) .responseJSON { response in
+                print("Status Code: \(response.response!.statusCode)")
+                switch response.result {
+                case .Success(let value):
+                    completionHandler(value as? String, nil)
                 case .Failure(let error):
                     completionHandler(nil, error)
                 }
             }
-        
         }
+
     }
     
 //    func requestUserPlaylist(){
@@ -176,11 +245,8 @@ struct Networking {
 }
 
 extension String {
-    func replace(string:String, replacement:String) -> String {
-        return self.stringByReplacingOccurrencesOfString(string, withString: replacement, options: NSStringCompareOptions.LiteralSearch, range: nil)
-    }
-    
-    func removeWhitespace() -> String {
-        return self.replace(" ", replacement: "%20")
+    func stringByAddingPercentEncodingForURLQueryParameter() -> String? {
+        let allowedCharacters = NSCharacterSet.URLQueryAllowedCharacterSet()
+        return stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)
     }
 }

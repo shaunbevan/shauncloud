@@ -10,43 +10,67 @@ import UIKit
 import OAuthSwift
 import Alamofire
 import SwiftyJSON
+import KeychainAccess
 
 class LoginViewController: UIViewController {
     
-    
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
     var networking = Networking()
+    private let keychain = Keychain(service: "com.shaunbevan.shauncloud")
+
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var friendsLabel: UILabel!
+    @IBOutlet weak var tracksLabel: UILabel!
+    @IBOutlet weak var namesLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.namesLabel.text = User.currentUser.username
+        self.friendsLabel.text = User.currentUser.friends
         
-        // Initial load of user data
-        networking.getUser() { responseObject, error in
-            if let json = responseObject {
-                User.currentUser.username = json["username"].string
-                User.currentUser.playlistCount = json["playlist_count"].intValue
-            }
+        if let tracks = User.currentUser.trackCount {
+            self.tracksLabel.text = String(tracks)
         }
-
-        // Initial load of playlist data
-        networking.getPlaylist() { responseObject, error in
-            if let json = responseObject {
-                self.spinner.stopAnimating()
-                for index in 0..<json.count {
-
-                    let artURL = json[index]["artwork_url"].stringValue
-                    let title = json[index]["title"].stringValue
-                    let tracks = json[index]["tracks"].count
-
-                    Playlists.userPlaylists.playlistArtURL.append(artURL)
-                    Playlists.userPlaylists.playlistTitles.append(title)
-                    Playlists.userPlaylists.playlistTrackCount.append(tracks)
+        
+        if let avatar = User.currentUser.avatarURL {
+            if let url = NSURL(string: avatar) {
+                if let data = NSData(contentsOfURL: url) {
+                    self.profileImage.image = UIImage(data: data)
                 }
             }
-            else {
-                self.spinner.startAnimating()
-            }
         }
+        
+//        // Initial load of user data
+//        networking.getUser() { responseObject, error in
+//            if let json = responseObject {
+//                User.currentUser.username = json["username"].string
+//                User.currentUser.playlistCount = json["playlist_count"].intValue
+//            }
+//        }
+//
+//        // Initial load of playlist data
+//        networking.getPlaylist() { responseObject, error in
+//            if let json = responseObject {
+//                self.spinner.stopAnimating()
+//                for index in 0..<json.count {
+//
+//                    let artURL = json[index]["artwork_url"].stringValue
+//                    let title = json[index]["title"].stringValue
+//                    let tracks = json[index]["tracks"].count
+//
+//                    Playlists.userPlaylists.playlistArtURL.append(artURL)
+//                    Playlists.userPlaylists.playlistTitles.append(title)
+//                    Playlists.userPlaylists.playlistTrackCount.append(tracks)
+//                }
+//            }
+//            else {
+//                self.spinner.startAnimating()
+//            }
+//        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        //networking.requestAuthenication()
     }
     
 
@@ -57,8 +81,13 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func signInPressed(sender: AnyObject) {
-        networking.requestAuthenication()
-
+//        do {
+//            try keychain.remove("shauncloud")
+//            print("Key removed")
+//        } catch let error {
+//            print("error: \(error)")
+//        }
+        //networking.putTrackInPlaylist("", tracks: [""])
         
     }
     

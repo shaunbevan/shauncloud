@@ -19,8 +19,23 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     private var cellIdentifier: String = "Cell"
     
+    let spinner: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+
+    var refreshControl: UIRefreshControl!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(PlaylistViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.collectionView.addSubview(refreshControl) // not required when using UITableViewController
+    
+        self.spinner.color = UIColor.lightGrayColor()
+        self.spinner.frame = CGRectMake(0.0, 0.0, 10.0, 10.0)
+        self.spinner.center = self.view.center
+        self.view.addSubview(spinner)
+        self.spinner.bringSubviewToFront(self.view)
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -29,41 +44,64 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
         collectionView.backgroundColor = UIColor.whiteColor()
     }
     
+    func refresh(sender:AnyObject) {
+        // Code to refresh table view
+        updatePlaylist()
+        self.collectionView.reloadData()
+        refreshControl.endRefreshing()
+
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        networking.getPlaylist() { responseObject, error in
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.lightGrayColor()
+        
 
+        self.updatePlaylist()
+        
+    }
+    
+    func updatePlaylist(){
+        self.spinner.startAnimating()
+        networking.getPlaylist() { responseObject, error in
             
+            self.spinner.stopAnimating()
             var newPlaylist = [String]()
             var newArtURL = [String]()
+            var newIDs = [String]()
             
             if let json = responseObject {
+
                 for index in 0..<json.count {
-                    
                     let artURL = json[index]["artwork_url"].stringValue
                     let title = json[index]["title"].stringValue
+                    let id = json[index]["id"].stringValue
                     
+                    
+                    newIDs.append(id)
                     newPlaylist.append(title)
                     newArtURL.append(artURL)
+                }
+                
+                if newIDs == Playlists.userPlaylists.playlistIDs {
+                } else {
+                    Playlists.userPlaylists.playlistIDs = newIDs
                 }
                 
                 if newArtURL == Playlists.userPlaylists.playlistArtURL {
                 } else {
                     Playlists.userPlaylists.playlistArtURL = newArtURL
-                    self.collectionView.reloadData()
                 }
                 
                 if newPlaylist == Playlists.userPlaylists.playlistTitles {
                 } else {
                     Playlists.userPlaylists.playlistTitles = newPlaylist
-                    self.collectionView.reloadData()
                 }
             }
         }
     }
-    
-
-    
+        
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         
 //        let playlistIndex = Playlists.userPlaylists.playlistTitles.indexOf(Playlists.userPlaylists.playlistTitles[indexPath.row])
@@ -163,6 +201,7 @@ class PlaylistViewController: UIViewController, UICollectionViewDelegate, UIColl
             vc.playlistTitle.title = Playlists.userPlaylists.playlistTitles[row]
             vc.numberOfTracks = Playlists.userPlaylists.playlistTrackCount[row]
             vc.playlistArtURL = Playlists.userPlaylists.playlistArtURL[row]
+            vc.playlistID = Playlists.userPlaylists.playlistIDs[row]
             
         }
 
