@@ -21,7 +21,7 @@ class Playlists {
     var playlistIDs = [String]()
     
     
-    func updatePlaylist(){
+    func updatePlaylist(completionHandler: (success: Bool) -> ()){
         
         networking.getPlaylist() { responseObject, error in
             var newPlaylist = [String]()
@@ -44,21 +44,12 @@ class Playlists {
                     newTrackCount.append(count)
                 }
                 
-                if newIDs != Playlists.userPlaylists.playlistIDs {
                     Playlists.userPlaylists.playlistIDs = newIDs
-                }
-                if newArtURL != Playlists.userPlaylists.playlistArtURL {
                     Playlists.userPlaylists.playlistArtURL = newArtURL
-                }
-                
-                if newPlaylist != Playlists.userPlaylists.playlistTitles {
                     Playlists.userPlaylists.playlistTitles = newPlaylist
-                }
-                
-                if newTrackCount != Playlists.userPlaylists.playlistTrackCount {
                     Playlists.userPlaylists.playlistTrackCount = newTrackCount
-                }
             }
+            completionHandler(success: true)
         }
     }
 }
